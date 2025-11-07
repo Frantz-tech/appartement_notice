@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function GuestLogin() {
+export default function GuestLogin({ onLoginSuccess }) {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
@@ -18,6 +18,7 @@ export default function GuestLogin() {
     if (response.ok) {
       alert('Connexion réussie ✅')
       setError('')
+      onLoginSuccess()
       console.log('Connexion réussie', data)
     } else {
       alert(data.message)
