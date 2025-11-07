@@ -7,7 +7,7 @@ export default function GuestLogin() {
   const handleSubmit = async e => {
     e.preventDefault()
 
-    const response = await fetch('api/admin/login', {
+    const response = await fetch('http://localhost:3001/api/guest/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ password })
@@ -20,7 +20,7 @@ export default function GuestLogin() {
       setError('')
       console.log('Connexion réussie', data)
     } else {
-      alert('Connexion failed ❌')
+      alert(data.message)
       setError(data.message)
     }
   }
@@ -29,7 +29,7 @@ export default function GuestLogin() {
     <form
       onSubmit={handleSubmit}
       className='flex flex-col gap-4 m-4 justify-center items-center'>
-      {error && <p className='text-red-600'>{error} </p>}
+      {error && <p className='text-red-600'> Réessayer </p>}
       <div className='mb-6'>
         <label
           htmlFor='password'
