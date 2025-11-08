@@ -22,6 +22,11 @@ const guestPassword = async plainPassword => {
   return guest
 }
 
+const createGuest = async guestData => {
+  return await Repository.createGuest(guestData)
+}
+
 export const Service = {
-  guestPassword
+  guestPassword,
+  createGuest
 }

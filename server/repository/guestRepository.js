@@ -7,6 +7,17 @@ const getLatestGuest = async () => {
   return rows[0]
 }
 
+const createGuest = async guestData => {
+  const { name, lastName, number, email } = guestData
+  const [result] = await pool.query(
+    'INSERT INTO GUEST_INFO (NAME, LASTNAME, NUMBER, EMAIL) VALUE (?, ?, ?, ? )',
+    [name, lastName, number, email]
+  )
+
+  return result.insertId
+}
+
 export const Repository = {
-  getLatestGuest
+  getLatestGuest,
+  createGuest
 }

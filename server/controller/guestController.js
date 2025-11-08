@@ -28,6 +28,16 @@ const guestLogin = async (req, res) => {
   }
 }
 
+const createGuest = async (req, res, next) => {
+  try {
+    const result = await Service.createGuest(req.body)
+    sendSuccessResponse(res, 201, '✅ Client crée avec succès', result)
+  } catch (err) {
+    next(err)
+  }
+}
+
 export const Controller = {
-  guestLogin
+  guestLogin,
+  createGuest
 }

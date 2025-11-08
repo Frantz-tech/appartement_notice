@@ -1,29 +1,35 @@
+'use client'
+
 import { useState } from 'react'
 
 export default function CheckInGuest({ onFormSend }) {
+  const [name, setName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [number, setNumber] = useState('')
+  const [email, setEmail] = useState('')
   const [error, setError] = useState('')
 
-  // const handleSubmit = async e => {
-  //   e.preventDefault()
+  const handleSubmit = async e => {
+    e.preventDefault()
 
-  //   const response = await fetch('http://localhost:3001/api/admin/login', {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ email, password })
-  //   })
+    const response = await fetch('http://localhost:3001/api/guest/dashboard', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, lastName, number, email })
+    })
 
-  //   const data = await response.json()
+    const data = await response.json()
 
-  //   if (response.ok) {
-  //     alert('Connexion réussie ✅')
-  //     setError('')
-  //     onFormSend()
-  //     console.log('Connexion réussie', data)
-  //   } else {
-  //     alert('Connexion failed ❌')
-  //     setError(data.message)
-  //   }
-  // }
+    if (response.ok) {
+      alert('Accès au dashboard')
+      setError('')
+      onFormSend()
+      console.log('Connexion réussie', data)
+    } else {
+      alert('Connexion failed ❌')
+      setError(data.message)
+    }
+  }
 
   return (
     <div className='flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black'>
@@ -33,10 +39,7 @@ export default function CheckInGuest({ onFormSend }) {
         </h1>
 
         <form
-          onSubmit={e => {
-            e.preventDefault()
-            onFormSend()
-          }}
+          onSubmit={handleSubmit}
           className='flex flex-col gap-4 m-4 justify-center items-center'>
           {error && <p className='text-red-600'>{error} </p>}{' '}
           <div className='grid gap-6 mb-6 md:grid-cols-2'>
@@ -47,6 +50,10 @@ export default function CheckInGuest({ onFormSend }) {
                 First name
               </label>
               <input
+                value={name}
+                onChange={e => {
+                  setName(e.target.value)
+                }}
                 type='text'
                 id='first_name'
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
@@ -61,6 +68,10 @@ export default function CheckInGuest({ onFormSend }) {
                 Last name
               </label>
               <input
+                value={lastName}
+                onChange={e => {
+                  setLastName(e.target.value)
+                }}
                 type='text'
                 id='last_name'
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
@@ -75,6 +86,10 @@ export default function CheckInGuest({ onFormSend }) {
                 Phone number
               </label>
               <input
+                value={number}
+                onChange={e => {
+                  setNumber(e.target.value)
+                }}
                 type='tel'
                 id='phone'
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
@@ -89,11 +104,16 @@ export default function CheckInGuest({ onFormSend }) {
                 Email address
               </label>
               <input
+                value={email}
+                onChange={e => {
+                  setEmail(e.target.value)
+                }}
                 type='email'
                 id='email'
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                 placeholder='john.doe@company.com'
                 required
+                // pattern='^(\+33|0)[0-9](?:[ .-]?\d{2}){4}$'
               />
             </div>
           </div>
