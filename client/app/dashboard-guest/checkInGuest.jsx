@@ -7,7 +7,12 @@ export default function CheckInGuest({ onFormSend }) {
   const [lastName, setLastName] = useState('')
   const [number, setNumber] = useState('')
   const [email, setEmail] = useState('')
+  const [checkIn, setcheckIn] = useState('')
+  const [checkOut, setcheckOut] = useState('')
   const [error, setError] = useState('')
+
+  const formattedCheckIn = checkIn.replace('T', ' ')
+  const formattedCheckOut = checkOut.replace('T', ' ')
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -15,13 +20,28 @@ export default function CheckInGuest({ onFormSend }) {
     const response = await fetch('http://localhost:3001/api/guest/dashboard', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, lastName, number, email })
+      body: JSON.stringify({
+        name,
+        lastName,
+        number,
+        email,
+        checkIn: formattedCheckIn,
+        checkOut: formattedCheckOut
+      })
     })
 
     const data = await response.json()
 
     if (response.ok) {
-      alert('Accès au dashboard')
+      // Save data in localstorage
+      localStorage.setItem(
+        'guestData',
+        JSON.stringify({
+          name,
+          lastName
+        })
+      )
+      alert(confirm('Accès au dashboard'))
       setError('')
       onFormSend()
       console.log('Connexion réussie', data)
@@ -97,7 +117,7 @@ export default function CheckInGuest({ onFormSend }) {
                 required
               />
             </div>
-            <div className='mb-6'>
+            <div>
               <label
                 htmlFor='email'
                 className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
@@ -114,6 +134,42 @@ export default function CheckInGuest({ onFormSend }) {
                 placeholder='john.doe@company.com'
                 required
                 // pattern='^(\+33|0)[0-9](?:[ .-]?\d{2}){4}$'
+              />
+            </div>
+            <div className='mb-6'>
+              <label
+                htmlFor='checkIn'
+                className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
+                Check In
+              </label>
+              <input
+                value={checkIn}
+                onChange={e => {
+                  setcheckIn(e.target.value)
+                }}
+                type='datetime-local'
+                id='checkIn'
+                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                placeholder='05-10-2025'
+                required
+              />
+            </div>
+            <div className='mb-6'>
+              <label
+                htmlFor='checkOut'
+                className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
+                Check Out
+              </label>
+              <input
+                value={checkOut}
+                onChange={e => {
+                  setcheckOut(e.target.value)
+                }}
+                type='datetime-local'
+                id='checkOut'
+                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                placeholder='05-10-2025'
+                required
               />
             </div>
           </div>

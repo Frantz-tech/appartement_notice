@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import GuestLogin from '../components/GuestLogin'
 import CheckInGuest from './checkInGuest'
 import { Dashboard } from './dashboardGuest'
@@ -8,6 +8,16 @@ import { Dashboard } from './dashboardGuest'
 export default function ConnexionGuest() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [formComplete, setFormComplete] = useState(false)
+
+  useEffect(() => {
+    const savedGuest = JSON.parse(localStorage.getItem('guestData'))
+    if (savedGuest) {
+      // If user is already connected, with local storage he can scan
+      // the QR code again and will see the dashboard instant ( Need to Verify later)
+      setIsLoggedIn(true)
+      setFormComplete(true)
+    }
+  }, [])
 
   return isLoggedIn ? (
     formComplete ? (

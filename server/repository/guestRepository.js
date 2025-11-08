@@ -8,11 +8,12 @@ const getLatestGuest = async () => {
 }
 
 const createGuest = async guestData => {
-  const { name, lastName, number, email } = guestData
+  const { name, lastName, number, email, checkIn, checkOut } = guestData
   const [result] = await pool.query(
-    'INSERT INTO GUEST_INFO (NAME, LASTNAME, NUMBER, EMAIL) VALUE (?, ?, ?, ? )',
-    [name, lastName, number, email]
+    'INSERT INTO GUEST_INFO (NAME, LASTNAME, NUMBER, EMAIL, CHECK_IN, CHECK_OUT) VALUE (?, ?, ?, ?, ?, ? )',
+    [name, lastName, number, email, checkIn, checkOut]
   )
+  console.log('Repository || new Guest info : ', result)
 
   return result.insertId
 }
