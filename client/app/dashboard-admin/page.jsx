@@ -1,13 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import AdminLogin from '../components/AdminLogin.jsx'
+import AdminLogin from './AdminLogin.jsx'
 import { Dashboard } from './dashboardAdmin.jsx'
 
 export default function ConnexionAdmin() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   return isLoggedIn ? (
-    <div className='flex flex-col justify-center items-center'>
+    <div className='flex flex-col justify-center items-center h-dvh'>
       <Dashboard />
     </div>
   ) : (

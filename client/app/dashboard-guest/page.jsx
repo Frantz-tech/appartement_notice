@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import GuestLogin from '../components/GuestLogin'
+import GuestLogin from './GuestLogin'
 import CheckInGuest from './checkInGuest'
 import { Dashboard } from './dashboardGuest'
 

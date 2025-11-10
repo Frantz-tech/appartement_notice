@@ -16,10 +16,10 @@ export default function GuestLogin({ onLoginSuccess }) {
     const data = await response.json()
 
     if (response.ok) {
-      alert('Connexion réussie ✅')
+      alert('Mot de passe correct ✅')
       setError('')
       onLoginSuccess()
-      console.log('Connexion réussie', data)
+      console.log('Mot de passe correct 🔐', data)
     } else {
       alert(data.message)
       setError(data.message)
