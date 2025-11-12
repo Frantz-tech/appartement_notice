@@ -1,13 +1,15 @@
+import { useState } from 'react'
+import { MainContainer } from '../components/MainContainer'
 import { SideBarAdmin } from '../components/SideBar'
-import TopBar from '../components/topBar'
 
 export function Dashboard() {
+  const [activeMenu, setActiveMenu] = useState('')
+
   return (
     <>
-      <TopBar />
-      <div className='flex flex-row w-full h-full '>
-        <SideBarAdmin />
-        <div className='containerDashboard bg-red-500 w-full '> </div>
+      <SideBarAdmin activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+      <div className='containerDashboard h-full w-full '>
+        <MainContainer className='flex' activeMenu={activeMenu} />
       </div>
     </>
   )
