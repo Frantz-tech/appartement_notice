@@ -7,7 +7,7 @@ import { Dashboard } from './dashboardAdmin.jsx'
 export default function ConnexionAdmin() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   return isLoggedIn ? (
-    <div className='flex flex-row justify-center items-center h-dvh'>
+    <div className='flex flex-row justify-center items-center h-full'>
       <Dashboard />
     </div>
   ) : (

@@ -12,53 +12,62 @@ export const menu = [
   {
     label: 'Résumé global',
     component: <Resume />,
-    logo: <img src='./favicon.ico' alt='logoResume' />
+    logo: <img src='./favicon.ico' alt='logoResume' />,
+    header: "Résumé global de l'appartement !"
   },
   {
     label: 'Dernières modifs ',
     component: <LastModif />,
-    logo: <img src='./favicon.ico' alt='logoResume' />
+    logo: <img src='./favicon.ico' alt='logoResume' />,
+    header: "Dernieres modification de l'appartement"
   },
   {
     label: 'Liste des pièces',
     component: <ListRoom />,
-    logo: <img src='./favicon.ico' alt='logoResume' />
+    logo: <img src='./favicon.ico' alt='logoResume' />,
+    header: 'Liste des pièces en images'
   },
   {
     label: 'Ajouter une pièce',
     component: <AddRoom />,
-    logo: <img src='./favicon.ico' alt='logoResume' />
+    logo: <img src='./favicon.ico' alt='logoResume' />,
+    header: "Ajout d'une pièce pour l'appartement"
   },
   {
     label: 'Liste des éléments',
     component: <ListElem />,
-    logo: <img src='./favicon.ico' alt='logoResume' />
+    logo: <img src='./favicon.ico' alt='logoResume' />,
+    header: 'List des elements de l appart'
   },
   {
     label: 'Ajouter un élément',
     component: <AddElem />,
-    logo: <img src='./favicon.ico' alt='logoResume' />
+    logo: <img src='./favicon.ico' alt='logoResume' />,
+    header: 'Ajout d un element'
   },
   {
     label: 'Galerie ',
     component: <Galerie />,
-    logo: <img src='./favicon.ico' alt='logoResume' />
+    logo: <img src='./favicon.ico' alt='logoResume' />,
+    header: 'galerie photo par appart'
   },
   {
     label: 'Ajouter /supprimer ',
     component: <AddDeletedRoom />,
-    logo: <img src='./favicon.ico' alt='logoResume' />
+    logo: <img src='./favicon.ico' alt='logoResume' />,
+    header: 'ajouter ou supprimer qqchose'
   },
   {
     label: 'Règlement ',
     component: <Rules />,
-    logo: <img src='./favicon.ico' alt='logoResume' />
+    logo: <img src='./favicon.ico' alt='logoResume' />,
+    header: '🏠 Règlement intérieur de tous les l’appartement'
   }
 ]
 export function SideBarAdmin({ setActiveMenu }) {
   return (
     <div
-      className='sideBar bg-blue-400 h-full w-3/12 flex flex-col items-center  
+      className='sideBar bg-blue-400 h-dvh w-3/12 flex flex-col items-center self-start
     '>
       <div className='logo w-full flex items-center border-b-gray-500 border-b-2 px-2 '>
         <img src='./favicon.ico' alt='logo société' className='w-10 h-10' />
