@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 export default function TopBar() {
   return (
-    <div className='flex w-full bg-gray-100 p-2 px-6 h-24 justify-between items-center'>
+    <div className='flex w-full bg-neutral-400 p-2 px-6 h-24 justify-between items-center border-b-2 '>
       <div className='leftSideColumn flex flex-col justify-evenly'>
         <div className='leftSideTopbar flex items-center gap-2 mb-1'>
           <div className='logo'>

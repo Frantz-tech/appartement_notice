@@ -49,13 +49,13 @@ export const menu = [
     label: 'Galerie ',
     component: <Galerie />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: 'galerie photo par appart'
+    header: 'Galerie photo par appart'
   },
   {
     label: 'Ajouter /supprimer ',
     component: <AddDeletedRoom />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: 'ajouter ou supprimer qqchose'
+    header: 'Ajouter ou Supprimer'
   },
   {
     label: 'Règlement ',
@@ -67,7 +67,7 @@ export const menu = [
 export function SideBarAdmin({ setActiveMenu }) {
   return (
     <div
-      className='sideBar bg-blue-400 h-dvh w-3/12 flex flex-col items-center self-start
+      className='sideBar bg-white h-dvh w-3/12 flex flex-col items-center self-start
     '>
       <div className='logo w-full flex items-center border-b-gray-500 border-b-2 px-2 '>
         <img src='./favicon.ico' alt='logo société' className='w-10 h-10' />
