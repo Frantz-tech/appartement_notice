@@ -1,6 +1,6 @@
 import AddDeletedRoom from './AddDelete'
 import AddElem from './AddElem'
-import AddRoom from './AddRoom'
+import { FormCreateAppart } from './Appartement/FormCreateAppart'
 import Galerie from './Galerie'
 import LastModif from './LastModif'
 import ListElem from './ListElem'
@@ -28,10 +28,10 @@ export const menu = [
     header: 'Liste des pièces en images'
   },
   {
-    label: 'Ajouter une pièce',
-    component: <AddRoom />,
+    label: 'Ajouter un Appartement',
+    component: <FormCreateAppart />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: "Ajout d'une pièce pour l'appartement"
+    header: 'Ajouter un appartement'
   },
   {
     label: 'Liste des éléments',
