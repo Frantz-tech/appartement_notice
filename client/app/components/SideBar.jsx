@@ -49,7 +49,7 @@ export const menu = [
     label: 'Galerie ',
     component: <Galerie />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: 'Galerie photo par appart'
+    header: 'Galerie'
   },
   {
     label: 'Ajouter /supprimer ',
@@ -67,13 +67,13 @@ export const menu = [
 export function SideBarAdmin({ setActiveMenu }) {
   return (
     <div
-      className='sideBar bg-white h-dvh w-3/12 flex flex-col items-center self-start
+      className='sideBar bg-black h-dvh w-3/12 flex flex-col items-center self-start
     '>
-      <div className='logo w-full flex items-center border-b-gray-500 border-b-2 px-2 '>
+      <div className='logo h-24 w-full flex items-center  '>
         <img src='./favicon.ico' alt='logo société' className='w-10 h-10' />
         <div className=' flex flex-col titleSideBar items-start  p-2  text-center '>
-          <h1 className='text-black '> Nom Société </h1>
-          <p className='text-gray-700'> Gestion locative </p>
+          <h1 className='text-white '> Nom Société </h1>
+          <p className='text-white'> Gestion locative </p>
         </div>
       </div>
       <div className='containerList flex flex-col w-full border-b-gray-500 border-b-2 mb-6  '>
@@ -82,7 +82,7 @@ export function SideBarAdmin({ setActiveMenu }) {
             <li
               onClick={() => setActiveMenu(item.label)}
               key={index}
-              className='flex items-center text-black hover:bg-blue-500 p-2 rounded cursor-pointer '>
+              className='flex items-center text-white hover:bg-yellow-400 p-2 rounded cursor-pointer '>
               {item.logo && <span className='w-5 h-5 mr-2 '>{item.logo}</span>}
               {item.label}
             </li>

@@ -57,8 +57,8 @@ export default function Galerie() {
   ]
 
   return (
-    <div className='galerie p-4 mx-auto flex justify-center items-center h-auto '>
-      <div className='grid grid-cols-4 gap-10 mx-5'>
+    <div className='galerie p-4 mx-auto overflow-scroll '>
+      <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4   '>
         {photos.map(photo => (
           <div key={photo.id} onClick={() => setSelectedPhoto(photo.src)}>
             <PhotoCard

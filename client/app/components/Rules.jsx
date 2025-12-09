@@ -8,7 +8,9 @@ export default function Rules() {
           flex-col  
           mx-auto
           text-center
-          p-4 h-dvh
+          text-black
+          overflow-scroll
+          p-4 
           [&_h1]:text-2xl 
           [&_h1]:font-extrabold 
           [&_h1]:uppercase 

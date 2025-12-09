@@ -9,8 +9,8 @@ export function MainContainer({ activeMenu }) {
     <>
       <div className='flex flex-col h-dvh'>
         <TopBar />
-        <div className='flex flex-col w-full h-full overflow-auto bg-black-500  '>
-          <div className='text-3xl w-full bg-neutral-400 p-4 text-center'>
+        <div className='flex flex-col relative w-full h-full overflow-hidden bg-white/90 rounded-tl-xl  '>
+          <div className='text-3xl w-full  text-black p-5 text-center sticky top-0 z-10 backdrop-blur-md bg-white/1'>
             {currentItem ? currentItem.header : 'Choisis un Menu'}
           </div>
           {currentItem ? currentItem.component : <h1> Choisit un menu ! </h1>}
