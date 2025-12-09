@@ -11,16 +11,46 @@ export function FormCreateAppart() {
   const [superficie, setSuperficie] = useState('')
   const [chambres, setChambres] = useState('')
   const [sdb, setSdb] = useState('')
-  const [cuisine, setCuisine] = useState(false)
-  const [meubles, setMeubles] = useState(false)
+  const [cuisine, setCuisine] = useState(true)
+  const [meubles, setMeubles] = useState(true)
   const [balcon, setBalcon] = useState(false)
   const [ascenseur, setAscenseur] = useState(false)
   const [description, setDescription] = useState('')
+  const types = [
+    'Studio',
+    'F1',
+    'F2',
+    'F3',
+    'F4',
+    'F5',
+    'Maison',
+    'Loft',
+    'Duplex',
+    'Triplex',
+    'Villa',
+    'Appartement'
+  ]
+
+  const resetForm = () => {
+    setNom('')
+    setAdresse('')
+    setVille('')
+    setCode_postal('')
+    setType('')
+    setSuperficie('')
+    setChambres('')
+    setSdb('')
+    setCuisine(true)
+    setMeubles(true)
+    setBalcon(false)
+    setAscenseur(false)
+    setDescription('')
+  }
 
   const handleSubmit = async e => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:30001/api/appartement', {
+    const response = await fetch('http://localhost:3001/api/appartement', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -40,12 +70,12 @@ export function FormCreateAppart() {
       })
     })
 
-    const data = await response.JSON()
+    const data = await response.json()
 
     if (response.ok) {
       alert('Données envoyé avec succes')
-
       console.log('Body json envoyé en base de donnée : ', data)
+      resetForm()
     } else {
       alert('Connexion failed ❌')
       setError(data.message)
@@ -69,6 +99,8 @@ export function FormCreateAppart() {
            [&_input]:dark:text-white [&_input]:dark:focus:ring-blue-500 [&_input]:dark:focus:border-blue-500
           [&_label]:block
           [&_label]:text-sm
+          [&_label]:pl-3
+          [&_label]:uppercase
           [&_label]:font-medium
           [&_label]:text-gray-900
           [&_label]:dark:text-white
@@ -119,14 +151,16 @@ export function FormCreateAppart() {
             </div>
             <div>
               <label htmlFor='type'>Type</label>
-              <input
-                type='text'
-                id='type'
+              <select
                 value={type}
                 onChange={e => setType(e.target.value)}
-                placeholder='Type'
-                required
-              />
+                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
+                {types.map(t => (
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
+                ))}
+              </select>
             </div>
             <div>
               <label htmlFor='superficie'>Superficie</label>
@@ -135,7 +169,7 @@ export function FormCreateAppart() {
                 id='superficie'
                 value={superficie}
                 onChange={e => setSuperficie(e.target.value)}
-                placeholder='Superficie'
+                placeholder='Superficie ( m2 )'
                 required
               />
             </div>
