@@ -3,8 +3,8 @@ import AddElem from './AddElem'
 import { FormCreateAppart } from './Appartement/FormCreateAppart'
 import Galerie from './Galerie'
 import LastModif from './LastModif'
+import ListAppart from './ListAppart'
 import ListElem from './ListElem'
-import ListRoom from './ListRoom'
 import Resume from './Resume'
 import Rules from './Rules'
 
@@ -22,10 +22,10 @@ export const menu = [
     header: "Dernieres modification de l'appartement"
   },
   {
-    label: 'Liste des pièces',
-    component: <ListRoom />,
+    label: 'Liste des appartements',
+    component: <ListAppart />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: 'Liste des pièces en images'
+    header: 'Liste des appartements'
   },
   {
     label: 'Ajouter un Appartement',

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { postData } from '../POST/PostData'
 
 export function FormCreateAppart() {
   const [nom, setNom] = useState('')
@@ -47,66 +48,53 @@ export function FormCreateAppart() {
     setDescription('')
   }
 
+  const body = {
+    nom,
+    adresse,
+    ville,
+    code_postal,
+    type,
+    superficie,
+    chambres,
+    sdb,
+    cuisine,
+    meubles,
+    balcon,
+    ascenseur,
+    description
+  }
   const handleSubmit = async e => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:3001/api/appartement', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        nom,
-        adresse,
-        ville,
-        code_postal,
-        type,
-        superficie,
-        chambres,
-        sdb,
-        cuisine,
-        meubles,
-        balcon,
-        ascenseur,
-        description
-      })
-    })
-
-    const data = await response.json()
-
-    if (response.ok) {
-      alert('Données envoyé avec succes')
-      console.log('Body json envoyé en base de donnée : ', data)
-      resetForm()
-    } else {
-      alert('Connexion failed ❌')
-      setError(data.message)
-    }
+    await postData('http://localhost:3001/api/appartement', body)
+    resetForm()
   }
 
   return (
-    <div className='flex items-start justify-center bg-zinc-50 font-sans dark:bg-black overflow-auto h-full '>
-      <div className='flex w-full max-w-3xl flex-col  items-center justify-evenly p-4 bg-white dark:bg-black '>
+    <div className='flex items-center justify-center  font-sans h-full '>
+      <div className='flex w-full max-w-3xl flex-col  items-center justify-evenly '>
         <form
           onSubmit={handleSubmit}
-          className='flex flex-col gap-4 m-4 justify-center items-center'>
+          className='flex flex-col gap-4 m-3 justify-center items-center border-4 border-black rounded-2xl p-5'>
           <div
             className='
-          grid gap-6 mb-6 md:grid-cols-2 
+          grid gap-4 md:grid-cols-2 
           [&_input]:bg-gray-50 
           [&_input]:border [&_input]:border-gray-300 [&_input]:text-gray-900 
           [&_input]:text-sm [&_input]:rounded-lg [&_input]:focus:ring-blue-500 
-          [&_input]:focus:border-blue-500 [&_input]:block [&_input]:w-full [&_input]:p-2.5 
+          [&_input]:focus:border-blue-500 [&_input]:block [&_input]:w-full [&_input]:p-2
           [&_input]:dark:bg-gray-700 [&_input]:dark:border-gray-600 [&_input]:dark:placeholder-gray-400
            [&_input]:dark:text-white [&_input]:dark:focus:ring-blue-500 [&_input]:dark:focus:border-blue-500
           [&_label]:block
           [&_label]:text-sm
           [&_label]:pl-3
-          [&_label]:uppercase
+          [&_label]:
           [&_label]:font-medium
           [&_label]:text-gray-900
-          [&_label]:dark:text-white
+          [&_label]:dark:text-black
           '>
             <div>
-              <label htmlFor='nom'>Nom</label>
+              {/* <label htmlFor='nom'>Nom</label> */}
               <input
                 type='text'
                 id='nom'
@@ -117,7 +105,7 @@ export function FormCreateAppart() {
               />
             </div>
             <div>
-              <label htmlFor='adresse'>Adresse</label>
+              {/* <label htmlFor='adresse'>Adresse</label> */}
               <input
                 type='text'
                 id='adresse'
@@ -128,7 +116,7 @@ export function FormCreateAppart() {
               />
             </div>
             <div>
-              <label htmlFor='ville'>Ville</label>
+              {/* <label htmlFor='ville'>Ville</label> */}
               <input
                 type='text'
                 id='ville'
@@ -139,7 +127,7 @@ export function FormCreateAppart() {
               />
             </div>
             <div>
-              <label htmlFor='code_postal'>Code Postal</label>
+              {/* <label htmlFor='code_postal'>Code Postal</label> */}
               <input
                 type='text'
                 id='code_postal'
@@ -150,7 +138,7 @@ export function FormCreateAppart() {
               />
             </div>
             <div>
-              <label htmlFor='type'>Type</label>
+              {/* <label htmlFor='type'>Type</label> */}
               <select
                 value={type}
                 onChange={e => setType(e.target.value)}
@@ -163,7 +151,7 @@ export function FormCreateAppart() {
               </select>
             </div>
             <div>
-              <label htmlFor='superficie'>Superficie</label>
+              {/* <label htmlFor='superficie'>Superficie</label> */}
               <input
                 type='number'
                 id='superficie'
@@ -174,7 +162,7 @@ export function FormCreateAppart() {
               />
             </div>
             <div>
-              <label htmlFor='chambres'>Chambres</label>
+              {/* <label htmlFor='chambres'>Chambres</label> */}
               <input
                 type='number'
                 id='chambres'
@@ -185,7 +173,7 @@ export function FormCreateAppart() {
               />
             </div>
             <div>
-              <label htmlFor='sdb'>Salle de bain</label>
+              {/* <label htmlFor='sdb'>Salle de bain</label> */}
               <input
                 type='number'
                 id='sdb'
@@ -232,9 +220,12 @@ export function FormCreateAppart() {
               />
             </div>
             <div className='md:col-span-2'>
-              <label htmlFor='description'>Description</label>
-              <input
+              {/* <label htmlFor='description'>Description</label> */}
+              <textarea
+                className='w-full border border-gray-300 text-gray-900 
+          text-sm rounded-lg p-2 block bg-gray-700 dark:text-white dark:placeholder-gray-400 '
                 type='text'
+                rows='5'
                 id='description'
                 value={description}
                 onChange={e => setDescription(e.target.value)}
@@ -244,7 +235,7 @@ export function FormCreateAppart() {
           </div>
           <button
             type='submit'
-            className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
+            className='text-white cursor-pointer bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-3xl text-sm w-full sm:w-auto px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
             Submit
           </button>
         </form>
