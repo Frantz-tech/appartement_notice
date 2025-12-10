@@ -66,7 +66,7 @@ export function FormCreateAppart() {
   const handleSubmit = async e => {
     e.preventDefault()
 
-    await postData('http://localhost:3001/api/appartement', body)
+    await postData('http://localhost:3001/api/admin/appartement', body)
     resetForm()
   }
 

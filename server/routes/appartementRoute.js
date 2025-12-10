@@ -3,6 +3,6 @@ import { Controller } from '../controller/appartementController.js'
 
 const router = Router()
 
-router.post('/', Controller.createAppartement)
+router.post('/appartement', Controller.createAppartement)
 
 export default router

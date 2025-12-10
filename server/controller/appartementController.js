@@ -25,16 +25,12 @@ const createAppartement = async (req, res) => {
       dataAppart,
       dataDetailAppart
     )
-
+    // Mettre a la place send succes response
     res
       .status(200)
       .json({ message: 'Appartement créé', ids: [appartId, detailId] })
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({
-      message: 'Erreur lors de la création de l’appartement',
-      error: error.message
-    })
+  } catch (err) {
+    next(err)
   }
 }
 
