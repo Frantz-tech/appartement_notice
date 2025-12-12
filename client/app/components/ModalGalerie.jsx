@@ -6,7 +6,7 @@ export default function ModalGalerie({ src, onClose }) {
       <img
         src={src}
         onClick={e => e.stopPropagation()}
-        className='max-w-3xs max-h-3x rounded-lg
+        className='max-w-3xs max-h-3xs rounded-lg
         '
       />
     </div>

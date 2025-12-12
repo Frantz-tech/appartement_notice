@@ -6,6 +6,13 @@ const getAllApparts = async () => {
   return apparts
 }
 
+const getAppartById = async id => {
+  const appartement = await Repository.getAppartById(id)
+  // const errors = []
+  return appartement
+}
+
 export const Service = {
-  getAllApparts
+  getAllApparts,
+  getAppartById
 }

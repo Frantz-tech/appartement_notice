@@ -12,6 +12,24 @@ const getAllApparts = async (req, res, next) => {
   }
 }
 
+const getAppartById = async (req, res, next) => {
+  const appartement = req.params.id
+  try {
+    const appartID = await Service.getAppartById(appartement)
+    console.log('Appart Id est = ', appartID)
+
+    sendSuccessResponse(
+      res,
+      200,
+      `Appartement avec l'id : ${appartement} récupéré avec succès `,
+      appartID
+    )
+  } catch (err) {
+    next(err)
+  }
+}
+
 export const Controller = {
-  getAllApparts
+  getAllApparts,
+  getAppartById
 }
