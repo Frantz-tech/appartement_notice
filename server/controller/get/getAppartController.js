@@ -16,7 +16,7 @@ const getAppartById = async (req, res, next) => {
   const appartement = req.params.id
   try {
     const appartID = await Service.getAppartById(appartement)
-    console.log('Appart Id est = ', appartID)
+    console.log('Détail de l appartement :  ', appartID)
 
     sendSuccessResponse(
       res,

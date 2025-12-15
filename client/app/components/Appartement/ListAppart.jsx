@@ -1,14 +1,21 @@
 import { useEffect, useState } from 'react'
 import { getData } from '../GET/GetData'
+import DetailAppartModal from './DetailAppartModal'
 
 export default function ListAppart() {
+  const [apparts, setApparts] = useState([])
+  const [selectedAppart, setSelectedAppart] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   const handleClickDetail = async id => {
     const details = await getData(
       `http://localhost:3001/api/admin/appartement_detail/${id}`
     )
-    console.log('Détails de l appartement : ', details.data)
+
+    setSelectedAppart(details.data[0])
+    setIsModalOpen(true)
   }
-  const [apparts, setApparts] = useState([])
+
   useEffect(() => {
     async function fetchApparts() {
       const response = await getData(
@@ -22,9 +29,7 @@ export default function ListAppart() {
 
   return (
     <div className='galerie p-4 mx-auto flex flex-col  items-center h-full overflow-auto '>
-      <h1> Liste des Appartements </h1>
-
-      <div className='grid grid-cols-2 grid-rows-3 sm:grid-cols-3 md:grid-cols-4 gap-4'>
+      <div className='grid grid-cols-2  sm:grid-cols-3 md:grid-cols-4 gap-4'>
         {apparts.map((appart, index) => (
           <div
             key={index}
@@ -48,6 +53,12 @@ export default function ListAppart() {
             </button>
           </div>
         ))}
+        {isModalOpen && (
+          <DetailAppartModal
+            appart={selectedAppart}
+            onClose={() => setIsModalOpen(false)}
+          />
+        )}
       </div>
     </div>
   )
