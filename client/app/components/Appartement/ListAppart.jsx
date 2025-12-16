@@ -21,7 +21,6 @@ export default function ListAppart() {
       const response = await getData(
         'http://localhost:3001/api/admin/appartement'
       )
-      console.log('Liste des appartements :', response)
       setApparts(response.data)
     }
     fetchApparts()

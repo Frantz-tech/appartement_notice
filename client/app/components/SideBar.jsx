@@ -77,7 +77,7 @@ export function SideBarAdmin({ setActiveMenu }) {
         </div>
       </div>
       <div className='containerList flex flex-col w-full border-b-gray-500 border-b-2 mb-6  '>
-        <ul className='space-y-2 p-2'>
+        <ul className='space-y-2 pt-10 pb-2 px-2'>
           {menu.map((item, index) => (
             <li
               onClick={() => setActiveMenu(item.label)}
