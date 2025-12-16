@@ -1,4 +1,8 @@
-export async function postData(url = '', data = {}) {
+export async function postData(
+  url = '',
+  data = {},
+  successMessage = 'Envoie réussie'
+) {
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -13,7 +17,7 @@ export async function postData(url = '', data = {}) {
     alert(json.errors ? json.errors[0] : json.message || 'Erreur inconnue')
     throw new Error(json.error || `Erreur serveur : ${response.status}`)
   }
-  alert('Données envoyés avec succès')
+  alert(successMessage)
   console.log('Réponse JSON', json)
   return json
 }

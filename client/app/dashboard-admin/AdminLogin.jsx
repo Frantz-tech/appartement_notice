@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { postData } from '../components/POST/PostData'
 
 export default function AdminLogin({ onLoginSuccess }) {
   const [email, setEmail] = useState('')
@@ -8,23 +9,15 @@ export default function AdminLogin({ onLoginSuccess }) {
   const handleSubmit = async e => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:3001/api/admin/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
-    })
-
-    const data = await response.json()
-
-    if (response.ok) {
-      alert('Connexion réussie ✅')
-      setError('')
-      onLoginSuccess()
-      console.log('Connexion réussie', data)
-    } else {
-      alert('Connexion failed ❌')
-      setError(data.message)
-    }
+    const response = await postData(
+      'http://localhost:3001/api/admin/login',
+      {
+        email,
+        password
+      },
+      'Vous êtes connecté ✅'
+    )
+    onLoginSuccess()
   }
 
   return (
