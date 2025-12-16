@@ -13,13 +13,13 @@ export const menu = [
     label: 'Résumé global',
     component: <Resume />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: "Résumé global de l'appartement !"
+    header: "Résumé global de l'appartement"
   },
   {
     label: 'Dernières modifs ',
     component: <LastModif />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: "Dernieres modification de l'appartement"
+    header: "Dernières modifications de l'appartement"
   },
   {
     label: 'Liste des appartements',
@@ -37,19 +37,19 @@ export const menu = [
     label: 'Liste des éléments',
     component: <ListElem />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: 'List des elements de l appart'
+    header: "Liste des éléments de l'appartement"
   },
   {
     label: 'Ajouter un élément',
     component: <AddElem />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: 'Ajout d un element'
+    header: "Ajout d'un élément"
   },
   {
     label: 'Galerie ',
     component: <Galerie />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: 'Galerie'
+    header: 'Galerie photo'
   },
   {
     label: 'Ajouter /supprimer ',
@@ -61,7 +61,7 @@ export const menu = [
     label: 'Règlement ',
     component: <Rules />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: '🏠 Règlement intérieur de tous les l’appartement'
+    header: '🏠 Règlement intérieur de tous les l’appartements'
   }
 ]
 export function SideBarAdmin({ setActiveMenu }) {
