@@ -34,7 +34,10 @@ export default function ListAppart() {
             key={index}
             className='
          text-black
-          rounded-md border-3 border-black 
+          rounded-md border border-gray-600 cursor-pointer 
+          transition duration-300 ease-in-out  
+          hover:shadow-lg/30 
+          hover:-translate-y-0.5 
           p-4
           '>
             <img src='/images/appartement.png' alt='' />
