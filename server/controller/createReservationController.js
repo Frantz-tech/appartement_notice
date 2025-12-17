@@ -3,13 +3,12 @@ import { Service } from '../services/createReservationService.js'
 
 const createReservation = async (req, res, next) => {
   try {
-    const { guestId, appartId, checkIn, checkOut, status } = req.body
+    const { guestId, appartId, checkIn, checkOut } = req.body
     console.log('BODY REÇU =>', req.body)
     const reservationId = await Service.createReservation(guestId, {
       appartId,
       checkIn,
-      checkOut,
-      status
+      checkOut
     })
 
     sendSuccessResponse(

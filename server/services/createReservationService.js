@@ -17,7 +17,7 @@ const checkAvailability = async (appartId, checkIn, checkOut) => {
 }
 const createReservation = async (guestId, reservationData) => {
   try {
-    const { appartId, checkIn, checkOut, status } = reservationData
+    const { appartId, checkIn, checkOut } = reservationData
     const available = await checkAvailability(appartId, checkIn, checkOut)
 
     if (!available) {

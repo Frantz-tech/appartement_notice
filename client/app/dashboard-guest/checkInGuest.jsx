@@ -44,6 +44,8 @@ export default function CheckInGuest({ onFormSend }) {
       body,
       'Données envoyé avec succès ! '
     )
+    if (onFormSend) onFormSend()
+
     localStorage.setItem(
       'guestData',
       JSON.stringify({
@@ -72,6 +74,9 @@ export default function CheckInGuest({ onFormSend }) {
                 value={selectedAppartement}
                 onChange={e => setSelectedAppartement(e.target.value)}
                 required>
+                <option value='' disabled>
+                  -- Sélectionner un appartement --
+                </option>
                 {appartements.map(appart => (
                   <option key={appart.APPART_ID} value={appart.APPART_ID}>
                     {appart.NOM} - {appart.VILLE}
