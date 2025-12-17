@@ -1,7 +1,9 @@
 import pool from '../../config/db.js'
 
 const getAllGuest = async () => {
-  const [rows] = await pool.query('SELECT * FROM GUEST_INFO ')
+  const [rows] = await pool.query(
+    'SELECT * FROM GUEST_INFO ORDER BY LASTNAME ASC'
+  )
   return rows
 }
 
