@@ -10,7 +10,7 @@ export default function GuestList() {
     async function fetchGuests() {
       const response = await getData('http://localhost:3001/api/admin/guest')
       setGuests(response.data)
-      alert('Guest récupérés avec succès')
+      // alert('Guest récupérés avec succès')
     }
     fetchGuests()
   }, [])

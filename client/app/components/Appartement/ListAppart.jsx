@@ -22,7 +22,7 @@ export default function ListAppart() {
         'http://localhost:3001/api/admin/appartement'
       )
       setApparts(response.data)
-      alert('Appartement récupérés avec succès')
+      // alert('Appartement récupérés avec succès')
     }
     fetchApparts()
   }, [])

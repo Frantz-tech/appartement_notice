@@ -11,7 +11,7 @@ export default function Reservations() {
         'http://localhost:3001/api/admin/reservations'
       )
       setRerservation(response.data)
-      alert('Guest récupérés avec succès')
+      // alert('Guest récupérés avec succès')
     }
     fetchReservations()
   }, [])
@@ -22,9 +22,10 @@ export default function Reservations() {
         {reservations.map((reservation, index) => {
           const checkInFormatted = formatDate(reservation.CHECK_IN)
           const checkOutFormatted = formatDate(reservation.CHECK_OUT)
-          const statusFormatted = reservation.STATUS.replace(/_/g, ' ')
-            .toLowerCase()
-            .replace(/\b\w/g, char => char.toUpperCase())
+          const statusFormatted = reservation.STATUS.replace(
+            /_/g,
+            ' '
+          ).toLowerCase()
           return (
             <div
               key={index}
