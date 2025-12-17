@@ -1,6 +1,6 @@
 import { Service } from '../services/appartementService.js'
 
-const createAppartement = async (req, res) => {
+const createAppartement = async (req, res, next) => {
   const dataAppart = {
     nom: req.body.nom,
     adresse: req.body.adresse,

@@ -28,7 +28,7 @@ export default function ListAppart() {
   }, [])
 
   return (
-    <div className='galerie p-4 mx-auto flex flex-col  items-center h-full overflow-auto '>
+    <div className='p-4 mx-auto flex flex-col  items-center h-full overflow-auto '>
       <div className='grid grid-cols-2  sm:grid-cols-3 md:grid-cols-4 gap-4'>
         {apparts.map((appart, index) => (
           <div

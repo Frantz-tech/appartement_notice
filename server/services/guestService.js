@@ -22,8 +22,8 @@ const guestPassword = async plainPassword => {
   return guest
 }
 
-const createGuest = async guestData => {
-  return await Repository.createGuest(guestData)
+const createGuest = async (guestData, reservationData) => {
+  return await Repository.createGuest(guestData, reservationData)
 }
 
 export const Service = {

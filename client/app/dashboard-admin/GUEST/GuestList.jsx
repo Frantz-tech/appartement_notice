@@ -1,0 +1,40 @@
+import { useEffect, useState } from 'react'
+import { getData } from '../../components/GET/GetData'
+
+export default function GuestList() {
+  const [guests, setGuests] = useState([])
+
+  // const [selectedGuest, setSelectedGuest] = useState(null)
+
+  useEffect(() => {
+    async function fetchGuests() {
+      const response = await getData('http://localhost:3001/api/admin/guest')
+      setGuests(response.data)
+      alert('Guest récupérés avec succès')
+    }
+    fetchGuests()
+  }, [])
+
+  return (
+    <div className='p-4 mx-auto flex flex-col items-center h-full overflow-auto '>
+      <div className='grid grid-cols-3  sm:grid-cols-1 md:grid-cols-3 gap-4'>
+        {guests.map((guest, index) => (
+          <div
+            key={index}
+            className='text-black
+              relative
+          rounded-md border border-gray-600 cursor-pointer 
+          transition duration-300 ease-in-out  
+          hover:shadow-lg/30 
+          hover:-translate-y-0.5 
+          p-4'>
+            <div>Nom : {guest.LASTNAME} </div>
+            <div>Prénom : {guest.NAME} </div>
+            <div>Email : {guest.EMAIL}</div>
+            <div>Numéro : {guest.NUMBER}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}

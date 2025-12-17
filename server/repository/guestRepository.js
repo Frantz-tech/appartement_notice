@@ -7,15 +7,27 @@ const getLatestGuest = async () => {
   return rows[0]
 }
 
-const createGuest = async guestData => {
-  const { name, lastName, number, email, checkIn, checkOut } = guestData
+const createGuest = async (guestData, reservationData) => {
+  const { name, lastName, email, number } = guestData
+
   const [result] = await pool.query(
-    'INSERT INTO GUEST_INFO (NAME, LASTNAME, NUMBER, EMAIL, CHECK_IN, CHECK_OUT) VALUE (?, ?, ?, ?, ?, ? )',
-    [name, lastName, number, email, checkIn, checkOut]
+    // Insert guest data
+    'INSERT INTO GUEST_INFO (NAME, LASTNAME, EMAIL, NUMBER) VALUE (?, ?, ?, ?)',
+    [name, lastName, email, number]
   )
+
+  const guestId = result.insertId
+
   console.log('Repository || new Guest info : ', result)
 
-  return result.insertId
+  // Insert in reservation table
+  const { appart_id, check_in, check_out, status } = reservationData
+  const [reservationResult] = await pool.query(
+    'INSERT INTO RESERVATIONS (APPART_ID, GUEST_ID, CHECK_IN, CHECK_OUT, STATUS) VALUE (?,?,?,?,?)',
+    [appart_id, guestId, check_in, check_out, status]
+  )
+
+  return [guestId, reservationResult.insertId]
 }
 
 export const Repository = {

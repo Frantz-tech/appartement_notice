@@ -29,10 +29,32 @@ const guestLogin = async (req, res) => {
 }
 
 const createGuest = async (req, res, next) => {
+  console.log('BODY RECU:', req.body)
   try {
-    const result = await Service.createGuest(req.body)
-    sendSuccessResponse(res, 201, '✅ Client crée avec succès', result)
+    const guestData = {
+      name: req.body.name,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      number: req.body.number
+    }
+    console.log('debug guestData', guestData)
+
+    const reservationData = {
+      appart_id: req.body.appart_id,
+      check_in: req.body.checkIn,
+      check_out: req.body.checkOut,
+      status: req.body.status || 'EN_ATTENTE'
+    }
+    console.log('debug reservationData ', reservationData)
+
+    await Service.createGuest(guestData, reservationData)
+
+    sendSuccessResponse(res, 201, '✅ Client et réservation crée avec succès', {
+      'données du client': guestData,
+      'données de la reservation ': reservationData
+    })
   } catch (err) {
+    console.error('Erreur createGuest :', err)
     next(err)
   }
 }

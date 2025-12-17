@@ -1,54 +1,56 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { postData } from '../components/POST/PostData'
 
 export default function CheckInGuest({ onFormSend }) {
   const [name, setName] = useState('')
   const [lastName, setLastName] = useState('')
   const [number, setNumber] = useState('')
+  const [error, setError] = useState('')
   const [email, setEmail] = useState('')
   const [checkIn, setcheckIn] = useState('')
   const [checkOut, setcheckOut] = useState('')
-  const [error, setError] = useState('')
+  const [appartements, setAppartements] = useState([])
+  const [selectedAppartement, setSelectedAppartement] = useState('')
 
-  const formattedCheckIn = checkIn.replace('T', ' ')
-  const formattedCheckOut = checkOut.replace('T', ' ')
+  useEffect(() => {
+    async function fetchAppartements() {
+      const response = await fetch(
+        'http://localhost:3001/api/admin/appartement'
+      )
+      const data = await response.json()
+      setAppartements(data.data)
+    }
+    fetchAppartements()
+  }, [])
+
+  const body = {
+    name,
+    lastName,
+    number,
+    email,
+    appart_id: selectedAppartement,
+    checkIn,
+    checkOut,
+    status: 'EN_ATTENTE'
+  }
 
   const handleSubmit = async e => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:3001/api/guest/dashboard', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
+    await postData(
+      'http://localhost:3001/api/guest/dashboard',
+      body,
+      'Données envoyé avec succès ! '
+    )
+    localStorage.setItem(
+      'guestData',
+      JSON.stringify({
         name,
-        lastName,
-        number,
-        email,
-        checkIn: formattedCheckIn,
-        checkOut: formattedCheckOut
+        lastName
       })
-    })
-
-    const data = await response.json()
-
-    if (response.ok) {
-      // Save data in localstorage
-      localStorage.setItem(
-        'guestData',
-        JSON.stringify({
-          name,
-          lastName
-        })
-      )
-      alert(confirm('Accès au dashboard'))
-      setError('')
-      onFormSend()
-      console.log('Connexion réussie', data)
-    } else {
-      alert('Connexion failed ❌')
-      setError(data.message)
-    }
+    )
   }
 
   return (
@@ -64,6 +66,20 @@ export default function CheckInGuest({ onFormSend }) {
           {error && <p className='text-red-600'>{error} </p>}{' '}
           <div className='grid gap-6 mb-6 md:grid-cols-2'>
             <div>
+              <label htmlFor='appartement'>Appartement</label>
+              <select
+                id='appartement'
+                value={selectedAppartement}
+                onChange={e => setSelectedAppartement(e.target.value)}
+                required>
+                {appartements.map(appart => (
+                  <option key={appart.APPART_ID} value={appart.APPART_ID}>
+                    {appart.NOM} - {appart.VILLE}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
               <label
                 htmlFor='first_name'
                 className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
@@ -75,7 +91,7 @@ export default function CheckInGuest({ onFormSend }) {
                   setName(e.target.value)
                 }}
                 type='text'
-                id='first_name'
+                id='name'
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                 placeholder='John'
                 required
@@ -83,7 +99,7 @@ export default function CheckInGuest({ onFormSend }) {
             </div>
             <div>
               <label
-                htmlFor='last_name'
+                htmlFor='lastName'
                 className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
                 Last name
               </label>
@@ -147,7 +163,7 @@ export default function CheckInGuest({ onFormSend }) {
                 onChange={e => {
                   setcheckIn(e.target.value)
                 }}
-                type='datetime-local'
+                type='date'
                 id='checkIn'
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                 placeholder='05-10-2025'
@@ -165,7 +181,7 @@ export default function CheckInGuest({ onFormSend }) {
                 onChange={e => {
                   setcheckOut(e.target.value)
                 }}
-                type='datetime-local'
+                type='date'
                 id='checkOut'
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                 placeholder='05-10-2025'

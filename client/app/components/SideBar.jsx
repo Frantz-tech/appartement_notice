@@ -1,9 +1,10 @@
+import GuestList from '../dashboard-admin/GUEST/GuestList'
 import AddElem from './AddElem'
 import { FormCreateAppart } from './Appartement/FormCreateAppart'
 import ListAppart from './Appartement/ListAppart'
 import Galerie from './Galerie'
 import Legal from './Legal'
-import ListElem from './ListElem'
+import Reservations from './Reservations'
 import Rules from './Rules'
 
 export const menu = [
@@ -20,16 +21,16 @@ export const menu = [
     header: 'Ajouter un appartement'
   },
   {
-    label: 'Gestion des réservations',
-    component: <ListElem />,
+    label: 'Liste des Clients',
+    component: <GuestList />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: 'Réservations'
+    header: 'Liste des Clients'
   },
   {
-    label: 'A venir',
-    component: <AddElem />,
+    label: 'Réservations',
+    component: <Reservations />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: 'A venir'
+    header: 'Gestion des Réservations'
   },
   {
     label: 'A venir',
