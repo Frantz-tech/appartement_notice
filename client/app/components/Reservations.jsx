@@ -22,6 +22,9 @@ export default function Reservations() {
         {reservations.map((reservation, index) => {
           const checkInFormatted = formatDate(reservation.CHECK_IN)
           const checkOutFormatted = formatDate(reservation.CHECK_OUT)
+          const statusFormatted = reservation.STATUS.replace(/_/g, ' ')
+            .toLowerCase()
+            .replace(/\b\w/g, char => char.toUpperCase())
           return (
             <div
               key={index}
@@ -39,7 +42,7 @@ export default function Reservations() {
                 text-xs font-semibold
                 rounded-full
               bg-green-500 text-white'>
-                {reservation.STATUS}
+                {statusFormatted}
               </div>
               <div>Nom du client : {reservation.GUEST_NAME} </div>
               <div>Prénom : {reservation.GUEST_LASTNAME} </div>
