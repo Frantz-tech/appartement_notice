@@ -1,26 +1,12 @@
-import AddDeletedRoom from './AddDelete'
 import AddElem from './AddElem'
 import { FormCreateAppart } from './Appartement/FormCreateAppart'
 import ListAppart from './Appartement/ListAppart'
 import Galerie from './Galerie'
-import LastModif from './LastModif'
+import Legal from './Legal'
 import ListElem from './ListElem'
-import Resume from './Resume'
 import Rules from './Rules'
 
 export const menu = [
-  {
-    label: 'Résumé global',
-    component: <Resume />,
-    logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: "Résumé global de l'appartement"
-  },
-  {
-    label: 'Dernières modifs ',
-    component: <LastModif />,
-    logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: "Dernières modifications de l'appartement"
-  },
   {
     label: 'Liste des appartements',
     component: <ListAppart />,
@@ -34,16 +20,22 @@ export const menu = [
     header: 'Ajouter un appartement'
   },
   {
-    label: 'Liste des éléments',
+    label: 'Gestion des réservations',
     component: <ListElem />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: "Liste des éléments de l'appartement"
+    header: 'Réservations'
   },
   {
-    label: 'Ajouter un élément',
+    label: 'A venir',
     component: <AddElem />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: "Ajout d'un élément"
+    header: 'A venir'
+  },
+  {
+    label: 'A venir',
+    component: <AddElem />,
+    logo: <img src='./favicon.ico' alt='logoResume' />,
+    header: 'A venir'
   },
   {
     label: 'Galerie ',
@@ -51,17 +43,18 @@ export const menu = [
     logo: <img src='./favicon.ico' alt='logoResume' />,
     header: 'Galerie photo'
   },
-  {
-    label: 'Ajouter /supprimer ',
-    component: <AddDeletedRoom />,
-    logo: <img src='./favicon.ico' alt='logoResume' />,
-    header: 'Ajouter ou Supprimer'
-  },
+
   {
     label: 'Règlement ',
     component: <Rules />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
     header: '🏠 Règlement intérieur de tous les l’appartements'
+  },
+  {
+    label: 'Légal',
+    component: <Legal />,
+    logo: <img src='./favicon.ico' alt='logoResume' />,
+    header: 'Légal'
   }
 ]
 export function SideBarAdmin({ setActiveMenu }) {

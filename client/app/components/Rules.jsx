@@ -40,6 +40,7 @@ export default function Rules() {
       const response = await getData('http://localhost:3001/api/admin/rules')
       setRules(response.data)
     }
+    alert('Règlement récupéré avec succès')
     fetchRules()
   }, [])
 
