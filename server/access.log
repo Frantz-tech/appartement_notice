@@ -890,3 +890,13 @@ GET /api/admin/rules - 2025-12-17T16:19:59.591Z
 GET /api/admin/rules - 2025-12-17T16:19:59.596Z
 GET /api/admin/guest - 2025-12-17T16:20:39.478Z
 GET /api/admin/guest - 2025-12-17T16:20:39.480Z
+GET /api/admin/rules - 2025-12-17T16:22:51.649Z
+GET /api/admin/rules - 2025-12-17T16:22:51.652Z
+GET /api/admin/guest - 2025-12-17T16:23:23.410Z
+GET /api/admin/guest - 2025-12-17T16:23:23.413Z
+GET /api/admin/rules - 2025-12-17T16:27:49.788Z
+GET /api/admin/rules - 2025-12-17T16:27:49.801Z
+GET /api/admin/appartement - 2025-12-17T16:27:52.507Z
+GET /api/admin/appartement - 2025-12-17T16:27:52.510Z
+GET /api/admin/rules - 2025-12-17T16:27:53.562Z
+GET /api/admin/rules - 2025-12-17T16:27:53.565Z

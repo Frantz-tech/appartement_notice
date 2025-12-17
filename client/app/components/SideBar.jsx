@@ -1,7 +1,7 @@
 import GuestList from '../dashboard-admin/GUEST/GuestList'
-import AddElem from './AddElem'
 import { FormCreateAppart } from './Appartement/FormCreateAppart'
 import ListAppart from './Appartement/ListAppart'
+import ComingSoon from './Coming'
 import Galerie from './Galerie'
 import Legal from './Legal'
 import Reservations from './Reservations'
@@ -34,7 +34,7 @@ export const menu = [
   },
   {
     label: 'A venir',
-    component: <AddElem />,
+    component: <ComingSoon />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
     header: 'A venir'
   },
