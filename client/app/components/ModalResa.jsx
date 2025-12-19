@@ -23,10 +23,12 @@ export default function DetailReservationModal({ reservation, onClose }) {
                   {resa.RESERVATION_ID}
                 </h2>
                 <p>Nom : {resa.LASTNAME}</p>
-                <p>Appartement : {resa.APPART_ID}</p>
+                <p>
+                  Appartement : {resa.APPART_NAME} - {resa.APPART_ID}
+                </p>
+                <p>Status : {statusFormatted}</p>
                 <p>Entrée : {checkInFormatted}</p>
                 <p>Sortie : {checkOutFormatted}</p>
-                <p>Status : {statusFormatted}</p>
                 <p>Créer le : {createdFormatted}</p>
               </div>
             )
