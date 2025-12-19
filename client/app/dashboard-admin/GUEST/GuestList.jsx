@@ -1,9 +1,19 @@
 import { useEffect, useState } from 'react'
 import { getData } from '../../components/GET/GetData'
+import DetailReservationModal from '../../components/ModalResa'
 
 export default function GuestList() {
   const [guests, setGuests] = useState([])
+  const [reservationId, setReservationId] = useState([])
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
+  const handleClickDetail = async guestId => {
+    const detailsReservation = await getData(
+      `http://localhost:3001/api/admin/reservations/${guestId}`
+    )
+    setReservationId(detailsReservation.data)
+    setIsModalOpen(true)
+  }
   // const [selectedGuest, setSelectedGuest] = useState(null)
 
   useEffect(() => {
@@ -22,6 +32,7 @@ export default function GuestList() {
           const numberFormatted = guest.NUMBER.replace(/(\d{2})(?=\d)/g, '$1.')
           return (
             <div
+              onClick={() => handleClickDetail(guest.GUEST_ID)}
               key={index}
               className='text-black
               relative
@@ -37,6 +48,12 @@ export default function GuestList() {
             </div>
           )
         })}
+        {isModalOpen && (
+          <DetailReservationModal
+            reservation={reservationId}
+            onClose={() => setIsModalOpen(false)}
+          />
+        )}
       </div>
     </div>
   )
