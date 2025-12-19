@@ -17,6 +17,34 @@ const getAllResa = async (req, res, next) => {
   }
 }
 
+const getReservationById = async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const reservationId = await Service.getReservationById(id)
+
+    if (!reservationId) {
+      return sendSuccessResponse(
+        res,
+        200,
+        `Aucune réservation trouvé pour l'utilisateur avec l'id ${id}`,
+        []
+      )
+    }
+    const guestName = reservationId?.[0]?.GUEST_LASTNAME ?? ' cet utilisateur '
+
+    sendSuccessResponse(
+      res,
+      200,
+      `Réservations de ${guestName} avec l'id ${id} récupérés avec succès`,
+      reservationId
+    )
+  } catch (err) {
+    console.error(' getReservationById debug : ', err)
+    next(err)
+  }
+}
+
 export const Controller = {
-  getAllResa
+  getAllResa,
+  getReservationById
 }

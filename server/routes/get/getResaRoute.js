@@ -4,5 +4,6 @@ import { Controller } from '../../controller/get/getResaController.js'
 const router = Router()
 
 router.get('/reservations', Controller.getAllResa)
-// router.get('/reservation/:id', Controller.getResaById) a faire
+router.get('/reservations/:id', Controller.getReservationById)
+
 export default router

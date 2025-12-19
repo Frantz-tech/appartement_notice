@@ -19,6 +19,22 @@ JOIN APPARTEMENT a
   ;`)
   return rows
 }
+
+const getReservationById = async id => {
+  const [rows] = await pool.query(
+    `SELECT 
+    r.*,
+    g.LASTNAME
+      FROM RESERVATIONS r
+    JOIN GUEST_INFO g ON r.GUEST_ID = g.GUEST_ID
+    WHERE r.GUEST_ID = ?`,
+    [id]
+  )
+  console.log(' >>> REPOSITORY id = ', id)
+
+  return rows
+}
 export const Repository = {
-  getAllResa
+  getAllResa,
+  getReservationById
 }

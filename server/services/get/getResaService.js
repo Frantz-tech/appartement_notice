@@ -5,6 +5,12 @@ const getAllResa = async () => {
   return reservation
 }
 
+const getReservationById = async id => {
+  const reservationId = await Repository.getReservationById(id)
+
+  return reservationId
+}
 export const Service = {
-  getAllResa
+  getAllResa,
+  getReservationById
 }
