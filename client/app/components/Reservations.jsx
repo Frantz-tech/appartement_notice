@@ -57,5 +57,3 @@ export default function Reservations() {
     </div>
   )
 }
-
-// A ajouter plius tard :
