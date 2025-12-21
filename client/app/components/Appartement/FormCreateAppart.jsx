@@ -1,22 +1,56 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { patchData } from '../PATCH/PatchData'
 import { postData } from '../POST/PostData'
 
-export function FormCreateAppart() {
-  const [nom, setNom] = useState('')
-  const [adresse, setAdresse] = useState('')
-  const [ville, setVille] = useState('')
-  const [code_postal, setCode_postal] = useState('')
-  const [type, setType] = useState('')
-  const [superficie, setSuperficie] = useState('')
-  const [chambres, setChambres] = useState('')
-  const [sdb, setSdb] = useState('')
-  const [cuisine, setCuisine] = useState(true)
-  const [meubles, setMeubles] = useState(true)
-  const [balcon, setBalcon] = useState(false)
-  const [ascenseur, setAscenseur] = useState(false)
-  const [description, setDescription] = useState('')
+export function FormCreateAppart({
+  mode = 'create',
+  initialData = null,
+  appartementId = null,
+  onClose = null
+}) {
+  // Animation de l'édit :
+
+  const [visible, setVisible] = useState(mode === 'edit' ? false : true)
+  useEffect(() => {
+    if (mode === 'edit') {
+      const timer = setTimeout(() => setVisible(true), 10)
+      return () => clearTimeout(timer)
+    }
+  }, [mode])
+  useEffect(() => {
+    if (mode === 'edit') {
+      setVisible(true)
+    } else {
+      setVisible(false)
+    }
+  }, [mode])
+
+  const handleClose = () => {
+    if (mode === 'edit') {
+      setVisible(false)
+      setTimeout(() => {
+        onClose && onClose()
+      }, 400)
+    } else {
+      onClose && onClose()
+    }
+  }
+
+  const [nom, setNom] = useState(initialData?.APPART_NAME || '')
+  const [adresse, setAdresse] = useState(initialData?.ADRESS_APPART || '')
+  const [ville, setVille] = useState(initialData?.TOWN || '')
+  const [code_postal, setCode_postal] = useState(initialData?.CP || '')
+  const [type, setType] = useState(initialData?.TYPE || '')
+  const [superficie, setSuperficie] = useState(initialData?.SUPERFICIE || '')
+  const [chambres, setChambres] = useState(initialData?.CHAMBRES || '')
+  const [sdb, setSdb] = useState(initialData?.SALLE_BAIN || '')
+  const [cuisine, setCuisine] = useState(initialData?.CUISINE ?? true)
+  const [meubles, setMeubles] = useState(initialData?.MEUBLES ?? true)
+  const [balcon, setBalcon] = useState(initialData?.BALCON ?? false)
+  const [ascenseur, setAscenseur] = useState(initialData?.ASCENSEUR ?? false)
+  const [description, setDescription] = useState(initialData?.DESCRIPTION || '')
   const types = [
     'Studio',
     'F1',
@@ -66,16 +100,54 @@ export function FormCreateAppart() {
   const handleSubmit = async e => {
     e.preventDefault()
 
+    if (mode === 'edit') {
+      await patchData(
+        `http://localhost:3001/api/admin/appartement/${appartementId}`,
+        body,
+        'Appartement modifié avec succès !'
+      )
+    }
+
     await postData('http://localhost:3001/api/admin/appartement', body)
     resetForm()
   }
 
   return (
-    <div className='flex items-center justify-center  font-sans h-full '>
-      <div className='flex w-full max-w-3xl flex-col  items-center justify-evenly '>
+    <div
+      className={`flex items-center justify-center font-sans h-full ${
+        mode === 'edit' ? 'fixed inset-0 bg-black/50 z-50' : ''
+      }`}>
+      <div
+        className={`bg-gray-600 rounded-2xl flex flex-col items-center justify-evenly transition-all duration-300 ${
+          mode === 'edit'
+            ? visible
+              ? 'scale-100 opacity-100'
+              : 'scale-0 opacity-0'
+            : ''
+        }`}>
         <form
           onSubmit={handleSubmit}
-          className='flex flex-col gap-4 m-3 justify-center items-center border-4 border-black rounded-2xl p-5'>
+          className='flex flex-col gap-4 m-3 justify-center items-center  p-5'>
+          {onClose && (
+            <button
+              onClick={handleClose}
+              className='
+              absolute
+              top-1
+              right-1
+              bg-white
+              text-black
+              w-6
+              h-6
+              rounded
+              flex
+              items-center
+              justify-center
+              cursor-pointer'>
+              &#10006;
+            </button>
+          )}
+
           <div
             className='
           grid gap-4 md:grid-cols-2 
@@ -236,7 +308,7 @@ export function FormCreateAppart() {
           <button
             type='submit'
             className='text-white cursor-pointer bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-3xl text-sm w-full sm:w-auto px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
-            Submit
+            {mode === 'edit' ? 'Modifier' : 'Créer'}
           </button>
         </form>
       </div>

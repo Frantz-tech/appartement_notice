@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export default function DetailAppartModal({ appart, onClose }) {
+export default function DetailAppartModal({ appart, onClose, onEdit }) {
   if (!appart) return null
 
   const [visible, setVisible] = useState(false)
@@ -34,20 +34,20 @@ export default function DetailAppartModal({ appart, onClose }) {
           {appart.APPART_NAME}
         </h2>
 
-        <p>Ascenseur : {boolYesNo(appart.ASCENSEUR)}</p>
-        <p>Balcon : {boolYesNo(appart.BALCON)}</p>
         <p>Chambre : {appart.CHAMBRES}</p>
-        <p>Cuisine : {boolYesNo(appart.CUISINE)}</p>
-        <p>Meubles : {boolYesNo(appart.MEUBLES)}</p>
         <p>Salle de bain : {appart.SALLE_BAIN}</p>
         <p>Superficie : {appart.SUPERFICIE}m2 </p>
-        <p>
-          Description : <br /> {appart.DESCRIPTION}
-        </p>
+        <p>Cuisine : {boolYesNo(appart.CUISINE)}</p>
+        <p>Meubles : {boolYesNo(appart.MEUBLES)}</p>
+        <p>Balcon : {boolYesNo(appart.BALCON)}</p>
+        <p>Ascenseur : {boolYesNo(appart.ASCENSEUR)}</p>
+        <p>Description : {appart.DESCRIPTION}</p>
 
         <div className='flex justify-center mt-5'>
-          <button className='text-white bg-black cursor-pointer font-medium rounded-3xl text-sm w-full sm:w-auto px-5 py-0.5 text-center'>
-            Modifier
+          <button
+            onClick={() => onEdit(appart)}
+            className='text-white bg-black cursor-pointer font-medium rounded-3xl text-sm w-full sm:w-auto px-5 py-0.5 text-center'>
+            Modification
           </button>
         </div>
 

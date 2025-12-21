@@ -1,11 +1,31 @@
 import { useEffect, useState } from 'react'
 import { getData } from '../GET/GetData'
 import DetailAppartModal from './DetailAppartModal'
+import { FormCreateAppart } from './FormCreateAppart'
 
 export default function ListAppart() {
   const [apparts, setApparts] = useState([])
   const [selectedAppart, setSelectedAppart] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isEditMode, setIsEditMode] = useState(false)
+
+  useEffect(() => {
+    if (isModalOpen && (isEditMode || !isEditMode)) {
+      document.body.classList.add('overflow-hidden')
+    } else {
+      document.body.classList.remove('overflow-hidden')
+    }
+
+    return () => {
+      document.body.classList.remove('overflow-hidden')
+    }
+  }, [isModalOpen, isEditMode])
+
+  const handleEditAppart = appart => {
+    setIsModalOpen(true)
+    setSelectedAppart(appart)
+    setIsEditMode(true)
+  }
 
   const handleClickDetail = async id => {
     const details = await getData(
@@ -56,13 +76,27 @@ export default function ListAppart() {
             </button>
           </div>
         ))}
-        {isModalOpen && (
+        {isModalOpen && !isEditMode && (
           <DetailAppartModal
             appart={selectedAppart}
-            onClose={() => setIsModalOpen(false)}
+            onClose={() => {
+              setIsModalOpen(false)
+              setIsEditMode(false)
+            }}
+            onEdit={handleEditAppart}
           />
         )}
       </div>
+      {isModalOpen && isEditMode && selectedAppart && (
+        <div className='fixed inset-0 flex items-center justify-center bg-black/10 z-50'>
+          <FormCreateAppart
+            mode='edit'
+            initialData={selectedAppart}
+            appartementId={selectedAppart.APPART_ID}
+            onClose={() => setIsEditMode(false)}
+          />
+        </div>
+      )}
     </div>
   )
 }
