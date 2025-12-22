@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { patchData } from '../PATCH/PatchData'
-import { postData } from '../POST/PostData'
+import { patchData } from '../CRUD/PATCH/PatchData'
+import { postData } from '../CRUD/POST/PostData'
 
 export function FormCreateAppart({
   mode = 'create',

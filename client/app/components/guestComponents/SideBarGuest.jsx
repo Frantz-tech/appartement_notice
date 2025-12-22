@@ -1,14 +1,14 @@
-import ListAppart from './Appartement/ListAppart'
+import Reservations from '../adminComponents/Reservations'
+import Galerie from '../Galerie'
+import Legal from '../Legal'
+import Rules from '../Rules'
 import ComingSoon from './Coming'
-import Galerie from './Galerie'
-import Legal from './Legal'
-import Reservations from './Reservations'
-import Rules from './Rules'
+import ListAppartGuest from './ListAppartGuest'
 
 export const menuGuest = [
   {
     label: 'Liste des appartements',
-    component: <ListAppart />,
+    component: <ListAppartGuest />,
     logo: <img src='./favicon.ico' alt='logoResume' />,
     header: 'Liste des appartements'
   },

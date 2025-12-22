@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { MainContainer } from '../components/MainContainer'
-import { SideBarAdmin } from '../components/SideBar'
+import { MainContainer } from '../components/adminComponents/MainContainer'
+import { SideBarAdmin } from '../components/adminComponents/SideBar'
 
 export function Dashboard() {
   const [activeMenu, setActiveMenu] = useState('')

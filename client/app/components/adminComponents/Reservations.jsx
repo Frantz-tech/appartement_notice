@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import formatDate from '../dashboard-admin/GUEST/FormatDate'
-import { getData } from './GET/GetData'
+import formatDate from '../../dashboard-admin/GUEST/FormatDate'
+import { getData } from '../CRUD/GET/GetData'
 
 export default function Reservations() {
   const [reservations, setReservation] = useState([])

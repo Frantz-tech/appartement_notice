@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import formatDate from '../dashboard-admin/GUEST/FormatDate'
+import formatDate from '../../dashboard-admin/GUEST/FormatDate'
 
 export default function DetailReservationModal({ reservation, onClose }) {
   if (!reservation) return null

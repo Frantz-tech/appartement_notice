@@ -1,15 +1,15 @@
-import ListAppart from './Appartement/ListAppart'
-import { menu } from './SideBar'
-import TopBar from './topBar'
+import ListAppart from '../Appartement/ListAppart'
+import { menuGuest } from './SideBarGuest'
+import TopBarGuest from './topBarGuest'
 
-export function MainContainer({ activeMenu }) {
-  const allMenu = [...menu]
+export function MainContainerGuest({ activeMenu }) {
+  const allMenu = [...menuGuest]
   const currentItem = allMenu.find(item => item.label === activeMenu)
 
   return (
     <>
       <div className='flex flex-col h-dvh'>
-        <TopBar />
+        <TopBarGuest />
         <div className='flex flex-col relative w-full h-full overflow-hidden bg-white/90 rounded-tl-xl  '>
           <div className='text-3xl w-full  text-black p-5 text-center sticky top-0'>
             {currentItem ? currentItem.header : 'Liste des appartements'}

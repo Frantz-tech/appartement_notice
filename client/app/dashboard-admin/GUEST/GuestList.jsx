@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { getData } from '../../components/GET/GetData'
-import DetailReservationModal from '../../components/ModalResa'
+import { getData } from '../../components/CRUD/GET/GetData'
+import DetailReservationModal from '../../components/adminComponents/ModalResa'
 
 export default function GuestList() {
   const [guests, setGuests] = useState([])

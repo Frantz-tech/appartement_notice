@@ -1,11 +1,11 @@
-import GuestList from '../dashboard-admin/GUEST/GuestList'
-import { FormCreateAppart } from './Appartement/FormCreateAppart'
-import ListAppart from './Appartement/ListAppart'
+import GuestList from '../../dashboard-admin/GUEST/GuestList'
+import { FormCreateAppart } from '../Appartement/FormCreateAppart'
+import ListAppart from '../Appartement/ListAppart'
+import Galerie from '../Galerie'
+import Legal from '../Legal'
+import Rules from '../Rules'
 import ComingSoon from './Coming'
-import Galerie from './Galerie'
-import Legal from './Legal'
 import Reservations from './Reservations'
-import Rules from './Rules'
 
 export const menu = [
   {

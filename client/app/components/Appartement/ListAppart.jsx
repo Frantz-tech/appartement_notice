@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getData } from '../GET/GetData'
+import { getData } from '../CRUD/GET/GetData'
 import DetailAppartModal from './DetailAppartModal'
 import { FormCreateAppart } from './FormCreateAppart'
 

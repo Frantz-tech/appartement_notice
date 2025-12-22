@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { postData } from '../components/POST/PostData'
+import { postData } from '../components/CRUD/POST/PostData'
 
 export default function CheckInGuest({ onFormSend }) {
   const [name, setName] = useState('')

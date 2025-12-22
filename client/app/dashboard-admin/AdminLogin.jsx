@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { postData } from '../components/POST/PostData'
+import { postData } from '../components/CRUD/POST/PostData'
 
 export default function AdminLogin({ onLoginSuccess }) {
   const [email, setEmail] = useState('')
