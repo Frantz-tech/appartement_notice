@@ -47,7 +47,7 @@ export default function Reservations() {
               </div>
               <div>Nom du client : {reservation.GUEST_NAME} </div>
               <div>Prénom : {reservation.GUEST_LASTNAME} </div>
-              <div>Email : {reservation.APPART_NAME}</div>
+              <div> Appartement Nom : {reservation.APPART_NAME}</div>
               <div>Date d'entrée : {checkInFormatted}</div>
               <div>Date de sortie : {checkOutFormatted}</div>
             </div>

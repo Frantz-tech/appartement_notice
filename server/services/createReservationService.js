@@ -3,25 +3,33 @@ import { Repository } from '../repository/createReservationRepository.js'
 
 const checkAvailability = async (appartId, checkIn, checkOut) => {
   const [rows] = await pool.query(
-    `SELECT * FROM RESERVATIONS
-     WHERE APPART_ID = ?
-       AND (
-             (? BETWEEN CHECK_IN AND CHECK_OUT)
-          OR (? BETWEEN CHECK_IN AND CHECK_OUT)
-          OR (CHECK_IN BETWEEN ? AND ?)
-          OR (CHECK_OUT BETWEEN ? AND ?)
-       )`,
-    [appartId, checkIn, checkOut, checkIn, checkOut, checkIn, checkOut]
+    `
+    SELECT 1
+    FROM RESERVATIONS
+    WHERE APPART_ID = ?
+      AND NOT (
+        ? >= CHECK_OUT
+        OR ? <= CHECK_IN
+      )
+    `,
+    [appartId, checkIn, checkOut]
   )
-  return rows.length === 0 // true = disponible, false = bloqué
+
+  return rows.length === 0
 }
+
 const createReservation = async (guestId, reservationData) => {
   try {
-    const { appartId, checkIn, checkOut } = reservationData
+    const {
+      appart_id: appartId,
+      check_in: checkIn,
+      check_out: checkOut
+    } = reservationData
+
     const available = await checkAvailability(appartId, checkIn, checkOut)
 
     if (!available) {
-      throw new Error('Ces dates sont déja réservées.')
+      throw new Error('Ces dates sont déja réservées createResaService.')
     }
 
     const reservationId = await Repository.createReservation(
@@ -35,7 +43,7 @@ const createReservation = async (guestId, reservationData) => {
   }
 }
 
-export const Service = {
+export const ServiceResa = {
   checkAvailability,
   createReservation
 }

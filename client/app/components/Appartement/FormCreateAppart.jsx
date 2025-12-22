@@ -114,20 +114,20 @@ export function FormCreateAppart({
 
   return (
     <div
-      className={`flex items-center justify-center font-sans h-full ${
+      className={`flex items-center justify-center font-sans h-full  ${
         mode === 'edit' ? 'fixed inset-0 bg-black/50 z-50' : ''
       }`}>
       <div
-        className={`bg-gray-600 rounded-2xl flex flex-col items-center justify-evenly transition-all duration-300 ${
+        className={`bg-gray-600 rounded flex flex-col  items-center justify-evenly transition-all duration-300 ${
           mode === 'edit'
             ? visible
-              ? 'scale-100 opacity-100'
+              ? 'scale-100 opacity-100 px-5 pt-5'
               : 'scale-0 opacity-0'
             : ''
         }`}>
         <form
           onSubmit={handleSubmit}
-          className='flex flex-col gap-4 m-3 justify-center items-center  p-5'>
+          className='flex flex-col gap-4 m-3 justify-center items-center'>
           {onClose && (
             <button
               onClick={handleClose}

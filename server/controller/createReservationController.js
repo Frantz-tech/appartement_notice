@@ -1,11 +1,12 @@
 import { sendSuccessResponse } from '../helper/responseHelper.js'
-import { Service } from '../services/createReservationService.js'
+import { ServiceResa } from '../services/createReservationService.js'
 
 const createReservation = async (req, res, next) => {
   try {
     const { guestId, appartId, checkIn, checkOut } = req.body
     console.log('BODY REÇU =>', req.body)
-    const reservationId = await Service.createReservation(guestId, {
+
+    const reservationId = await ServiceResa.createReservation(guestId, {
       appartId,
       checkIn,
       checkOut

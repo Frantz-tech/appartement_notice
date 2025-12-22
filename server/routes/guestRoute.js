@@ -6,7 +6,7 @@ const router = Router()
 // Route pour la connexion
 
 router.post('/login', Controller.guestLogin)
-router.post('/dashboard', Controller.createGuest)
+router.post('/dashboard', Controller.createGuestWithReservation)
 
 // Route privée
 // router.get('/dashboard', verifyAdmin, (req, res) => {

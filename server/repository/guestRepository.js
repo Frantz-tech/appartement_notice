@@ -7,7 +7,7 @@ const getLatestGuest = async () => {
   return rows[0]
 }
 
-const createGuest = async (guestData, reservationData) => {
+const createGuestWithReservation = async (guestData, reservationData) => {
   const { name, lastName, email, number } = guestData
 
   const [result] = await pool.query(
@@ -32,5 +32,5 @@ const createGuest = async (guestData, reservationData) => {
 
 export const Repository = {
   getLatestGuest,
-  createGuest
+  createGuestWithReservation
 }

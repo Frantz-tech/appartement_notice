@@ -28,7 +28,7 @@ const guestLogin = async (req, res) => {
   }
 }
 
-const createGuest = async (req, res, next) => {
+const createGuestWithReservation = async (req, res, next) => {
   console.log('BODY RECU:', req.body)
   try {
     const guestData = {
@@ -47,7 +47,7 @@ const createGuest = async (req, res, next) => {
     }
     console.log('debug reservationData ', reservationData)
 
-    await Service.createGuest(guestData, reservationData)
+    await Service.createGuestWithReservation(guestData, reservationData)
 
     sendSuccessResponse(res, 201, '✅ Client et réservation crée avec succès', {
       'données du client': guestData,
@@ -61,5 +61,5 @@ const createGuest = async (req, res, next) => {
 
 export const Controller = {
   guestLogin,
-  createGuest
+  createGuestWithReservation
 }
