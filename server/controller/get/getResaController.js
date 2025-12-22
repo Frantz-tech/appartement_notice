@@ -17,10 +17,10 @@ const getAllResa = async (req, res, next) => {
   }
 }
 
-const getReservationById = async (req, res, next) => {
+const getReservationByGuestId = async (req, res, next) => {
   try {
     const { id } = req.params
-    const reservationId = await Service.getReservationById(id)
+    const reservationId = await Service.getReservationByGuestId(id)
 
     if (!reservationId) {
       return sendSuccessResponse(
@@ -46,5 +46,5 @@ const getReservationById = async (req, res, next) => {
 
 export const Controller = {
   getAllResa,
-  getReservationById
+  getReservationByGuestId
 }

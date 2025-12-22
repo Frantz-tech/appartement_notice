@@ -1,12 +1,16 @@
-import { SideBarAdmin } from '../components/SideBar'
-import TopBar from '../components/topBar'
+import { useState } from 'react'
+import { MainContainerGuest } from '../components/MainContainerGuest'
+import { SideBarGuest } from '../components/SideBarGuest'
 
 export function Dashboard() {
+  const [activeMenu, setActiveMenu] = useState('')
+
   return (
     <>
-      <TopBar />
-      <SideBarAdmin />
-      <div className='containerDashboard bg-red-500 w-full '> </div>
+      <SideBarGuest activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+      <div className='containerDashboard h-full w-full '>
+        <MainContainerGuest className='flex' activeMenu={activeMenu} />
+      </div>
     </>
   )
 }

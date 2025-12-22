@@ -21,7 +21,7 @@ export default function ConnexionGuest() {
 
   return isLoggedIn ? (
     formComplete ? (
-      <div className='flex flex-col justify-center items-center'>
+      <div className='flex flex-row justify-center items-center h-full'>
         <Dashboard />
       </div>
     ) : (
