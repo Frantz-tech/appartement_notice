@@ -52,6 +52,11 @@ export const menuGuest = [
 ]
 
 export function SideBarGuest({ setActiveMenu }) {
+  const handleLogout = () => {
+    localStorage.removeItem('guestData')
+    setActiveMenu('')
+    window.location.href = '/dashboard-guest'
+  }
   return (
     <div
       className='sideBar bg-black h-dvh w-3/12 flex flex-col items-center self-start
@@ -84,7 +89,8 @@ export function SideBarGuest({ setActiveMenu }) {
           className='flex h-8 items-center justify-center 
       rounded border border-solid border-black\/\[\.08\] 
       px-5 transition-colors hover:border-transparent hover\:bg-black\/\[\.04\]
-       dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px] cursor-pointer'>
+       dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px] cursor-pointer'
+          onClick={handleLogout}>
           {' '}
           Déconnexion{' '}
         </div>

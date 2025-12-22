@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { postData } from '../components/CRUD/POST/PostData'
 
 export default function AdminLogin({ onLoginSuccess }) {
@@ -17,8 +17,20 @@ export default function AdminLogin({ onLoginSuccess }) {
       },
       'Vous êtes connecté ✅'
     )
-    onLoginSuccess()
+    if (response.data && response.data.token) {
+      localStorage.setItem('adminToken', JSON.stringify({ email }))
+      onLoginSuccess()
+      console.log('Token stocké : ', response.data.token)
+    } else {
+      setError('Email ou mdp incorrect')
+    }
   }
+  useEffect(() => {
+    const token = localStorage.getItem('adminToken')
+    if (token) {
+      onLoginSuccess() // reconnecte automatiquement a^res un refresh
+    }
+  }, [])
 
   return (
     <form
