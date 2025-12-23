@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import formatDate from '../../dashboard-admin/GUEST/FormatDate'
 import { getData } from '../CRUD/GET/GetData'
 
 export default function ReservationsByGuestId() {
@@ -25,15 +26,19 @@ export default function ReservationsByGuestId() {
     fetchReservations()
   }, [guestEmail])
 
-  if (reservations.length === 0) return <p>Aucune réservation trouvée</p>
-
-  return (
+  return reservations.length === 0 ? (
+    <p className='text-black'>Aucune réservation trouvée</p>
+  ) : (
     <div className='bg-red-50 text-black'>
-      {reservations.map(r => (
-        <div key={r.RESERVATION_ID}>
-          {r.APPART_NAME} - {r.CHECK_IN} à {r.CHECK_OUT}
-        </div>
-      ))}
+      {reservations.map(r => {
+        const checkInFormatted = formatDate(r.CHECK_IN)
+        const checkOutFormatted = formatDate(r.CHECK_OUT)
+        return (
+          <div key={r.RESERVATION_ID}>
+            {r.APPART_NAME} - {checkInFormatted} à {checkOutFormatted}
+          </div>
+        )
+      })}
     </div>
   )
 }

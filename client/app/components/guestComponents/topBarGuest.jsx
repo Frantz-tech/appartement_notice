@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export default function TopBarGuest() {
+export default function TopBarGuest({ guest }) {
   return (
     <div className='flex w-full bg-black p-2 px-6 h-24 justify-between items-center'>
       <div className='leftSideColumn flex flex-col justify-evenly'>
@@ -23,7 +23,7 @@ export default function TopBarGuest() {
           <p
             className='text-white text-xs text-shadow-xs
           '>
-            Bienvenue, Mr intel!
+            Bienvenue, Mr {guest?.LASTNAME}!
           </p>
         </div>
       </div>

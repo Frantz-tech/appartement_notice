@@ -6,10 +6,10 @@ import AlreadyGuestLogin from './AlreadyGuestLogin.jsx'
 
 export default function AlreadyGuest() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-
+  const [guestData, setGuestData] = useState(null)
   return isLoggedIn ? (
     <div className='flex flex-row justify-center items-center h-full'>
-      <DashboardG />
+      <DashboardG guest={guestData} />
     </div>
   ) : (
     <div className='flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black'>
@@ -17,7 +17,12 @@ export default function AlreadyGuest() {
         <h1 className='max-w-2xl text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50'>
           Connexion Guest
         </h1>
-        <AlreadyGuestLogin onLoginSuccess={() => setIsLoggedIn(true)} />
+        <AlreadyGuestLogin
+          onLoginSuccess={data => {
+            setGuestData(data)
+            setIsLoggedIn(true)
+          }}
+        />
       </div>
     </div>
   )

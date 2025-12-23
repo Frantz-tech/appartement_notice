@@ -51,9 +51,9 @@ export const menuGuest = [
   }
 ]
 
-export function SideBarGuest({ setActiveMenu }) {
+export function SideBarGuest({ setActiveMenu, guest }) {
   const handleLogout = () => {
-    localStorage.removeItem('guestData')
+    localStorage.removeItem('guestToken')
     setActiveMenu('')
     window.location.href = '/dashboard-guest'
   }
@@ -83,7 +83,8 @@ export function SideBarGuest({ setActiveMenu }) {
       </div>
       <div className='nameAndExit   p-2'>
         <div className='ml-2 mb-2 nom&role flex flex-col '>
-          <h1>Nom du client </h1>
+          <h1>{guest?.NAME} </h1>
+          <p> {guest?.LASTNAME} </p>
         </div>
         <div
           className='flex h-8 items-center justify-center 

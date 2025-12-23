@@ -2,14 +2,22 @@ import { useState } from 'react'
 import { MainContainerGuest } from '../components/guestComponents/MainContainerGuest'
 import { SideBarGuest } from '../components/guestComponents/SideBarGuest'
 
-export function DashboardG() {
+export function DashboardG({ guest }) {
   const [activeMenu, setActiveMenu] = useState('')
 
   return (
     <>
-      <SideBarGuest activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+      <SideBarGuest
+        guest={guest}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
+      />
       <div className='containerDashboard h-full w-full '>
-        <MainContainerGuest className='flex' activeMenu={activeMenu} />
+        <MainContainerGuest
+          guest={guest}
+          className='flex'
+          activeMenu={activeMenu}
+        />
       </div>
     </>
   )

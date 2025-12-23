@@ -18,8 +18,8 @@ export default function AlreadyGuestLogin({ onLoginSuccess }) {
         'guestToken',
         JSON.stringify({ token: response.data.token, email })
       )
-      onLoginSuccess()
-      console.log('Token stocké : ', response.data.token)
+      onLoginSuccess(response.data)
+      console.log('Guest data stocké : ', response.data)
     } else {
       setError('Email incorrect')
     }
