@@ -11,12 +11,15 @@ export default function ConnexionGuest() {
   const [formComplete, setFormComplete] = useState(false)
 
   useEffect(() => {
-    const savedGuest = JSON.parse(localStorage.getItem('guestData'))
-    if (savedGuest) {
-      // If user is already connected, with local storage he can scan
-      // the QR code again and will see the dashboard instant ( Need to Verify later)
-      setIsLoggedIn(true)
-      setFormComplete(true)
+    const savedGuestRaw = localStorage.getItem('guestData')
+    if (savedGuestRaw) {
+      try {
+        const savedGuest = JSON.parse(savedGuestRaw) // maintenant c'est bien l'objet guest
+        setIsLoggedIn(true)
+        setFormComplete(true)
+      } catch (err) {
+        console.error('Erreur parsing guestData', err)
+      }
     }
   }, [])
 

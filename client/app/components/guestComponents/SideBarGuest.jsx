@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import Galerie from '../Galerie'
 import Legal from '../Legal'
 import Rules from '../Rules'
@@ -52,7 +53,17 @@ export const menuGuest = [
 ]
 
 export function SideBarGuest({ setActiveMenu, guest }) {
+  const [guestData, setGuestData] = useState(guest || null)
+
+  useEffect(() => {
+    if (!guestData) {
+      const storagedGuest = localStorage.getItem('guestData')
+      if (storagedGuest) setGuestData(JSON.parse(storagedGuest))
+    }
+  }, [])
+
   const handleLogout = () => {
+    localStorage.removeItem('guestData')
     localStorage.removeItem('guestToken')
     setActiveMenu('')
     window.location.href = '/dashboard-guest'
@@ -83,8 +94,8 @@ export function SideBarGuest({ setActiveMenu, guest }) {
       </div>
       <div className='nameAndExit   p-2'>
         <div className='ml-2 mb-2 nom&role flex flex-col '>
-          <h1>{guest?.NAME} </h1>
-          <p> {guest?.LASTNAME} </p>
+          <h1>{guestData?.NAME} </h1>
+          <p> {guestData?.LASTNAME} </p>
         </div>
         <div
           className='flex h-8 items-center justify-center 

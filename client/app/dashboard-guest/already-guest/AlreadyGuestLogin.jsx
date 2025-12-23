@@ -18,6 +18,7 @@ export default function AlreadyGuestLogin({ onLoginSuccess }) {
         'guestToken',
         JSON.stringify({ token: response.data.token, email })
       )
+      localStorage.setItem('guestData', JSON.stringify(response.data))
       onLoginSuccess(response.data)
       console.log('Guest data stocké : ', response.data)
     } else {

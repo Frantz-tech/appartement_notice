@@ -1,6 +1,15 @@
 import { useEffect, useState } from 'react'
 
 export default function TopBarGuest({ guest }) {
+  const [guestData, setGuestData] = useState(guest || null)
+
+  useEffect(() => {
+    if (!guestData) {
+      const storagedGuest = localStorage.getItem('guestData')
+      if (storagedGuest) setGuestData(JSON.parse(storagedGuest))
+    }
+  }, [])
+
   return (
     <div className='flex w-full bg-black p-2 px-6 h-24 justify-between items-center'>
       <div className='leftSideColumn flex flex-col justify-evenly'>
@@ -23,7 +32,7 @@ export default function TopBarGuest({ guest }) {
           <p
             className='text-white text-xs text-shadow-xs
           '>
-            Bienvenue, Mr {guest?.LASTNAME}!
+            Bienvenue, Mr {guestData?.LASTNAME || 'Invité'} !
           </p>
         </div>
       </div>
