@@ -16,7 +16,9 @@ router.use('/admin', appartementRoutes)
 router.use('/admin', getAllAppartements)
 router.use('/admin', getAllRules)
 router.use('/admin', getGuestRoutes)
+router.use('/login', getGuestRoutes)
 router.use('/admin', getAllResa)
+router.use('/guest', getAllResa)
 router.use('/admin', createReservation)
 
 export default router

@@ -14,7 +14,15 @@ const getGuestById = async id => {
   )
   return rows
 }
+const connectGuestWithMail = async email => {
+  const [rows] = await pool.query(
+    `SELECT * FROM GUEST_INFO WHERE EMAIL = ? LIMIT 1`,
+    [email]
+  )
+  return rows[0] || null
+}
 export const Repository = {
   getAllGuest,
-  getGuestById
+  getGuestById,
+  connectGuestWithMail
 }

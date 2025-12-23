@@ -10,7 +10,14 @@ const getReservationByGuestId = async id => {
 
   return reservationId
 }
+
+const getReservationByGuestMail = async mail => {
+  const reservations = await Repository.getReservationByGuestMail(mail)
+
+  return reservations
+}
 export const Service = {
   getAllResa,
-  getReservationByGuestId
+  getReservationByGuestId,
+  getReservationByGuestMail
 }

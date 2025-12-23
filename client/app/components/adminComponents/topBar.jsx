@@ -6,7 +6,7 @@ export default function TopBar() {
       <div className='leftSideColumn flex flex-col justify-evenly'>
         <div className='leftSideTopbar flex items-center gap-2 mb-1'>
           <div className='logo'>
-            <img src='./favicon.ico' alt='' className='w-10 h-10' />
+            <img src='/favicon.ico' alt='' className='w-10 h-10' />
           </div>
           <div className='title'>
             <p className='font-bold text-white'> Tableau de bord</p>
@@ -15,7 +15,7 @@ export default function TopBar() {
             className='role flex items-center justify-center gap-2 
       rounded-full border border-solid border-blue-300 
       px-1.5 bg-white -mt-2.5'>
-            <img src='./favicon.ico' alt='' className='h-3 w-3' />
+            <img src='/favicon.ico' alt='' className='h-3 w-3' />
             <p className='text-blue-500 font-semibold text-xs'>
               {' '}
               Administrateur

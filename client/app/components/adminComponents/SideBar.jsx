@@ -11,50 +11,50 @@ export const menu = [
   {
     label: 'Liste des appartements',
     component: <ListAppart />,
-    logo: <img src='./favicon.ico' alt='logoResume' />,
+    logo: <img src='/favicon.ico' alt='logoResume' />,
     header: 'Liste des appartements'
   },
   {
     label: 'Ajouter un Appartement',
     component: <FormCreateAppart />,
-    logo: <img src='./favicon.ico' alt='logoResume' />,
+    logo: <img src='/favicon.ico' alt='logoResume' />,
     header: 'Ajouter un appartement'
   },
   {
     label: 'Liste des Clients',
     component: <GuestList />,
-    logo: <img src='./favicon.ico' alt='logoResume' />,
+    logo: <img src='/favicon.ico' alt='logoResume' />,
     header: 'Liste des Clients'
   },
   {
     label: 'Réservations',
     component: <Reservations />,
-    logo: <img src='./favicon.ico' alt='logoResume' />,
+    logo: <img src='/favicon.ico' alt='logoResume' />,
     header: 'Gestion des Réservations'
   },
   {
     label: 'A venir',
     component: <ComingSoon />,
-    logo: <img src='./favicon.ico' alt='logoResume' />,
+    logo: <img src='/favicon.ico' alt='logoResume' />,
     header: 'A venir'
   },
   {
     label: 'Galerie ',
     component: <Galerie />,
-    logo: <img src='./favicon.ico' alt='logoResume' />,
+    logo: <img src='/favicon.ico' alt='logoResume' />,
     header: 'Galerie photo'
   },
 
   {
     label: 'Règlement ',
     component: <Rules />,
-    logo: <img src='./favicon.ico' alt='logoResume' />,
+    logo: <img src='/favicon.ico' alt='logoResume' />,
     header: '🏠 Règlement intérieur de tous les l’appartements'
   },
   {
     label: 'Légal',
     component: <Legal />,
-    logo: <img src='./favicon.ico' alt='logoResume' />,
+    logo: <img src='/favicon.ico' alt='logoResume' />,
     header: 'Légal'
   }
 ]
@@ -69,7 +69,7 @@ export function SideBarAdmin({ setActiveMenu }) {
       className='sideBar bg-black h-dvh w-3/12 flex flex-col items-center self-start
     '>
       <div className='logo h-24 w-full flex items-center  '>
-        <img src='./favicon.ico' alt='logo société' className='w-10 h-10' />
+        <img src='/favicon.ico' alt='logo société' className='w-10 h-10' />
         <div className=' flex flex-col titleSideBar items-start  p-2  text-center '>
           <h1 className='text-white '> Nom Société </h1>
           <p className='text-white'> Gestion locative </p>

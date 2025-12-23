@@ -44,7 +44,33 @@ const getReservationByGuestId = async (req, res, next) => {
   }
 }
 
+const getReservationByGuestMail = async (req, res, next) => {
+  try {
+    const { email } = req.query
+    const reservations = await Service.getReservationByGuestMail(email)
+
+    if (!reservations || reservations.length === 0) {
+      return sendSuccessResponse(
+        res,
+        200,
+        'Aucune reservation pour le moment',
+        []
+      )
+    }
+
+    sendSuccessResponse(
+      res,
+      200,
+      'Liste des reservation de l utilisateur recup avec succes',
+      reservations
+    )
+  } catch (err) {
+    next(err)
+  }
+}
+
 export const Controller = {
   getAllResa,
-  getReservationByGuestId
+  getReservationByGuestId,
+  getReservationByGuestMail
 }

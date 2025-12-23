@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { MainContainerGuest } from '../components/guestComponents/MainContainerGuest'
 import { SideBarGuest } from '../components/guestComponents/SideBarGuest'
 
-export function Dashboard() {
+export function DashboardG() {
   const [activeMenu, setActiveMenu] = useState('')
 
   return (

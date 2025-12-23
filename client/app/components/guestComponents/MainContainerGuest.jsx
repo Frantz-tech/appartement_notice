@@ -1,4 +1,4 @@
-import ListAppart from '../Appartement/ListAppart'
+import ListAppartGuest from './ListAppartGuest'
 import { menuGuest } from './SideBarGuest'
 import TopBarGuest from './topBarGuest'
 
@@ -14,7 +14,7 @@ export function MainContainerGuest({ activeMenu }) {
           <div className='text-3xl w-full  text-black p-5 text-center sticky top-0'>
             {currentItem ? currentItem.header : 'Liste des appartements'}
           </div>
-          {currentItem ? currentItem.component : <ListAppart />}
+          {currentItem ? currentItem.component : <ListAppartGuest />}
         </div>
       </div>
     </>

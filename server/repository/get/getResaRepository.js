@@ -36,7 +36,24 @@ WHERE r.GUEST_ID = ?`,
 
   return rows
 }
+
+const getReservationByGuestMail = async email => {
+  const [rows] = await pool.query(
+    `SELECT 
+       r.*,
+       g.LASTNAME,
+       a.NOM as APPART_NAME
+     FROM RESERVATIONS r
+     JOIN GUEST_INFO g ON r.GUEST_ID = g.GUEST_ID
+     JOIN APPARTEMENT a ON r.APPART_ID = a.APPART_ID
+     WHERE g.EMAIL = ?`,
+    [email]
+  )
+
+  return rows
+}
 export const Repository = {
   getAllResa,
-  getReservationByGuestId
+  getReservationByGuestId,
+  getReservationByGuestMail
 }

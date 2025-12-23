@@ -61,7 +61,7 @@ export default function ListAppart() {
           hover:-translate-y-0.5 
           p-4
           '>
-            <img src='/images/appartement.png' alt='' />
+            <img src='/appartement.png' alt='' />
             {/* infos  */}
             <div className='text-blue-400'>{appart.NOM}</div>
             <div className='text-blue-300'>{appart.VILLE}</div>

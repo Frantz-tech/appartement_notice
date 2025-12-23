@@ -7,51 +7,51 @@ export default function Galerie() {
 
   const photos = [
     {
-      src: 'images/imgtest.jpeg',
+      src: '/imgtest.jpeg',
       id: 1
     },
     {
-      src: 'images/img1.jpeg',
+      src: '/img1.jpeg',
       id: 2
     },
     {
-      src: 'images/img2.jpeg',
+      src: '/img2.jpeg',
       id: 3
     },
     {
-      src: 'images/img3.jpeg',
+      src: '/img3.jpeg',
       id: 4
     },
     {
-      src: 'images/img4.jpeg',
+      src: '/img4.jpeg',
       id: 5
     },
     {
-      src: 'images/img5.jpeg',
+      src: '/img5.jpeg',
       id: 6
     },
     {
-      src: 'images/img6.jpeg',
+      src: '/img6.jpeg',
       id: 7
     },
     {
-      src: 'images/img7.jpeg',
+      src: '/img7.jpeg',
       id: 8
     },
     {
-      src: 'images/img8.jpeg',
+      src: '/img8.jpeg',
       id: 9
     },
     {
-      src: 'images/img9.jpeg',
+      src: '/img9.jpeg',
       id: 10
     },
     {
-      src: 'images/img10.jpeg',
+      src: '/img10.jpeg',
       id: 11
     },
     {
-      src: 'images/img10.jpeg',
+      src: '/img10.jpeg',
       id: 12
     }
   ]

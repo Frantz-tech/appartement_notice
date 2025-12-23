@@ -1,9 +1,10 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import GuestLogin from './GuestLogin'
 import CheckInGuest from './checkInGuest'
-import { Dashboard } from './dashboardGuest'
+import { DashboardG } from './dashboardGuest'
 
 export default function ConnexionGuest() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -22,7 +23,7 @@ export default function ConnexionGuest() {
   return isLoggedIn ? (
     formComplete ? (
       <div className='flex flex-row justify-center items-center h-full'>
-        <Dashboard />
+        <DashboardG />
       </div>
     ) : (
       <div className='flex flex-col justify-center items-center'>
@@ -36,6 +37,12 @@ export default function ConnexionGuest() {
           Connexion Guest
         </h1>
         <GuestLogin onLoginSuccess={() => setIsLoggedIn(true)} />
+        <Link href='/dashboard-guest/already-guest'>
+          {' '}
+          Déja client ? Connectez-vous ici !{' '}
+        </Link>
+        {/* Faire le composant pour la connexion "AlreadyGuest.jsx" formulaire avec un input email, 
+        check en bdd si il correspond et redirection vers le dashboard lié a cet Id */}
       </div>
     </div>
   )
