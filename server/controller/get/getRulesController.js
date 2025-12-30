@@ -4,7 +4,7 @@ import { Service } from '../../services/get/getRulesService.js'
 const getAllRules = async (req, res, next) => {
   try {
     const rules = await Service.getAllRules()
-    console.log('Appartemps = ', rules)
+    console.log('rules = ', rules)
 
     sendSuccessResponse(res, 200, 'Règles récupérés avec succès', rules)
   } catch (err) {

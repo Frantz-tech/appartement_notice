@@ -9,52 +9,58 @@ import Reservations from './Reservations'
 
 export const menu = [
   {
-    label: 'Liste des appartements',
+    label: 'Dashboard',
     component: <ListAppart />,
-    logo: <img src='/favicon.ico' alt='logoResume' />,
+    logo: <img src='/monitor.png' alt='logoResume' />,
+    header: 'Dashboard'
+  },
+  {
+    label: 'Appartements',
+    component: <ListAppart />,
+    logo: <img src='/residential.png' alt='logoResume' />,
     header: 'Liste des appartements'
   },
   {
     label: 'Ajouter un Appartement',
     component: <FormCreateAppart />,
-    logo: <img src='/favicon.ico' alt='logoResume' />,
+    logo: <img src='/addAppart.png' alt='logoResume' />,
     header: 'Ajouter un appartement'
   },
   {
     label: 'Liste des Clients',
     component: <GuestList />,
-    logo: <img src='/favicon.ico' alt='logoResume' />,
+    logo: <img src='/reserved.png' alt='logoResume' />,
     header: 'Liste des Clients'
   },
   {
     label: 'Réservations',
     component: <Reservations />,
-    logo: <img src='/favicon.ico' alt='logoResume' />,
-    header: 'Gestion des Réservations'
+    logo: <img src='/reserved.png' alt='logoResume' />,
+    header: 'Gestion les Réservations'
   },
   {
     label: 'A venir',
     component: <ComingSoon />,
-    logo: <img src='/favicon.ico' alt='logoResume' />,
+    logo: <img src='/comingS.png' alt='logoResume' />,
     header: 'A venir'
   },
   {
     label: 'Galerie ',
     component: <Galerie />,
-    logo: <img src='/favicon.ico' alt='logoResume' />,
+    logo: <img src='/galery.png' alt='logoResume' />,
     header: 'Galerie photo'
   },
 
   {
     label: 'Règlement ',
     component: <Rules />,
-    logo: <img src='/favicon.ico' alt='logoResume' />,
+    logo: <img src='/rules.png' alt='logoResume' />,
     header: '🏠 Règlement intérieur de tous les l’appartements'
   },
   {
     label: 'Légal',
     component: <Legal />,
-    logo: <img src='/favicon.ico' alt='logoResume' />,
+    logo: <img src='/legal.png' alt='logoResume' />,
     header: 'Légal'
   }
 ]

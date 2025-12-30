@@ -6,7 +6,7 @@ export default function TopBar() {
       <div className='leftSideColumn flex flex-col justify-evenly'>
         <div className='leftSideTopbar flex items-center gap-2 mb-1'>
           <div className='logo'>
-            <img src='/favicon.ico' alt='' className='w-10 h-10' />
+            <img src='/dashboardTop.png' alt='' className='w-10 h-10' />
           </div>
           <div className='title'>
             <p className='font-bold text-white'> Tableau de bord</p>

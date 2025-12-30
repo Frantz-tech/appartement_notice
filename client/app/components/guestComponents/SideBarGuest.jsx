@@ -8,46 +8,51 @@ import ReservationsByGuestId from './ReservationByGuest'
 
 export const menuGuest = [
   {
-    label: 'Liste des appartements',
+    label: 'Dashboard',
+    logo: <img src='/monitor.png' alt='logoResume' />,
+    header: 'Dashboard'
+  },
+  {
+    label: 'Appartements',
     component: <ListAppartGuest />,
-    logo: <img src='/favicon.ico' alt='logoResume' />,
+    logo: <img src='/residential.png' alt='logoResume' />,
     header: 'Liste des appartements'
   },
   {
     label: 'Réserver',
     component: <ReservationsByGuestId />,
-    logo: <img src='/favicon.ico' alt='logoResume' />,
+    logo: <img src='/reserved.png' alt='logoResume' />,
     header: 'Gérer mes Réservations'
   },
   {
     label: 'Historique',
     component: <ReservationsByGuestId />,
-    logo: <img src='/favicon.ico' alt='logoResume' />,
+    logo: <img src='/history1.png' alt='logoResume' />,
     header: 'Historique des réservations'
   },
   {
     label: 'A venir',
     component: <ComingSoon />,
-    logo: <img src='/favicon.ico' alt='logoResume' />,
+    logo: <img src='/comingS.png' alt='logoResume' />,
     header: 'A venir'
   },
   {
     label: 'Galerie ',
     component: <Galerie />,
-    logo: <img src='/favicon.ico' alt='logoResume' />,
+    logo: <img src='/galery.png' alt='logoResume' />,
     header: 'Galerie photo'
   },
 
   {
     label: 'Règlement ',
     component: <Rules />,
-    logo: <img src='/favicon.ico' alt='logoResume' />,
+    logo: <img src='/rules.png' alt='logoResume' />,
     header: '🏠 Règlement intérieur de tous les l’appartements'
   },
   {
     label: 'Légal',
     component: <Legal />,
-    logo: <img src='/favicon.ico' alt='logoResume' />,
+    logo: <img src='/legal.png' alt='logoResume' />,
     header: 'Légal'
   }
 ]

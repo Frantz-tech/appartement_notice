@@ -29,14 +29,29 @@ export default function ReservationsByGuestId() {
   return reservations.length === 0 ? (
     <p className='text-black'>Aucune réservation trouvée</p>
   ) : (
-    <div className='bg-red-50 text-black'>
+    <div className='m-8  h-full grid grid-cols-[70%_30%] gap-4 text-black'>
       {reservations.map(r => {
         const checkInFormatted = formatDate(r.CHECK_IN)
         const checkOutFormatted = formatDate(r.CHECK_OUT)
         return (
-          <div key={r.RESERVATION_ID}>
-            {r.APPART_NAME} - {checkInFormatted} à {checkOutFormatted}
-          </div>
+          <>
+            <div
+              className=' text-black rounded-md border border-gray-600 cursor-pointer  transition duration-300 ease-in-out   hover:shadow-lg/30  hover:-translate-y-0.5  p-4 '
+              key={r.RESERVATION_ID}>
+              <p className='NameAppart text-yellow-400'> {r.APPART_NAME}</p>
+              <p className='NameAppart text-gray-400'> {checkInFormatted}</p>
+              <p className='NameAppart text-blue-400'> {checkOutFormatted}</p>
+            </div>
+            <div className='flex justify-start'>
+              <div className='flex items-center'>
+                <button
+                  // onClick={() => }
+                  className='text-white bg-black cursor-pointer font-medium rounded-3xl text-sm w-full sm:w-auto px-5 py-0.5 text-center'>
+                  Voir l'appartement
+                </button>
+              </div>
+            </div>
+          </>
         )
       })}
     </div>
