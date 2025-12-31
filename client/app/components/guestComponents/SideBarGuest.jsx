@@ -99,8 +99,8 @@ export function SideBarGuest({ setActiveMenu, guest }) {
       </div>
       <div className='nameAndExit   p-2'>
         <div className='ml-2 mb-2 nom&role flex flex-col '>
-          <h1>{guestData?.NAME} </h1>
-          <p> {guestData?.LASTNAME} </p>
+          <h1> {guestData?.LASTNAME} </h1>
+          <p className='uppercase'> Client </p>
         </div>
         <div
           className='flex h-8 items-center justify-center 

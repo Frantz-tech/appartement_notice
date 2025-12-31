@@ -24,7 +24,7 @@ export default function TopBarGuest({ guest }) {
             className='role flex items-center justify-center gap-2 
       rounded-full border border-solid border-blue-300 
       px-1.5 bg-white -mt-2.5'>
-            <img src='/dashboardTop.png' alt='' className='h-3 w-3' />
+            <img src='/customer.png' alt='' className='h-3 w-3' />
             <p className='text-blue-500 font-semibold text-xs'> Invité </p>
           </div>
         </div>

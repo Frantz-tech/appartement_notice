@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import GuestList from '../../dashboard-admin/GUEST/GuestList'
 import { FormCreateAppart } from '../Appartement/FormCreateAppart'
 import ListAppart from '../Appartement/ListAppart'
@@ -64,8 +65,17 @@ export const menu = [
     header: 'Légal'
   }
 ]
-export function SideBarAdmin({ setActiveMenu }) {
+export function SideBarAdmin({ setActiveMenu, admin }) {
+  const [adminData, setAdminData] = useState(admin || null)
+  useEffect(() => {
+    if (!adminData) {
+      const storagedAdmin = localStorage.getItem('adminData')
+      if (storagedAdmin) setAdminData(JSON.parse(storagedAdmin))
+    }
+  }, [])
+
   const handleLogout = () => {
+    localStorage.removeItem('adminData')
     localStorage.removeItem('adminToken')
     setActiveMenu('')
     window.location.href = '/dashboard-admin'
@@ -96,7 +106,7 @@ export function SideBarAdmin({ setActiveMenu }) {
       </div>
       <div className='nameAndExit   p-2'>
         <div className='ml-2 mb-2 nom&role flex flex-col '>
-          <h1>Logan</h1>
+          <h1 className=''>{adminData?.prenom}</h1>
           <p>Administreur</p>
         </div>
         <div

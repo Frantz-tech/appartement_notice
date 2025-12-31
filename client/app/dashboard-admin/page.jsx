@@ -6,9 +6,10 @@ import { Dashboard } from './dashboardAdmin.jsx'
 
 export default function ConnexionAdmin() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [adminData, setAdminData] = useState(null)
   return isLoggedIn ? (
     <div className='flex flex-row justify-center items-center h-full'>
-      <Dashboard />
+      <Dashboard admin={adminData} />
     </div>
   ) : (
     <div className='flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black'>
@@ -16,7 +17,12 @@ export default function ConnexionAdmin() {
         <h1 className='max-w-2xl text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50'>
           Connexion Admin
         </h1>
-        <AdminLogin onLoginSuccess={() => setIsLoggedIn(true)} />
+        <AdminLogin
+          onLoginSuccess={data => {
+            setIsLoggedIn(true)
+            setAdminData(data)
+          }}
+        />
       </div>
     </div>
   )

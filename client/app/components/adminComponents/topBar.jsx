@@ -1,6 +1,15 @@
 import { useEffect, useState } from 'react'
 
-export default function TopBar() {
+export default function TopBar({ admin }) {
+  const [adminData, setAdminData] = useState(admin || null)
+
+  useEffect(() => {
+    if (!adminData) {
+      const storageAdmin = localStorage.getItem('adminData')
+      if (storageAdmin) setAdminData(JSON.parse(storageAdmin))
+    }
+  }, [])
+
   return (
     <div className='flex w-full bg-black p-2 px-6 h-24 justify-between items-center'>
       <div className='leftSideColumn flex flex-col justify-evenly'>
@@ -15,7 +24,7 @@ export default function TopBar() {
             className='role flex items-center justify-center gap-2 
       rounded-full border border-solid border-blue-300 
       px-1.5 bg-white -mt-2.5'>
-            <img src='/favicon.ico' alt='' className='h-3 w-3' />
+            <img src='/administrator.png' alt='' className='h-3 w-3' />
             <p className='text-blue-500 font-semibold text-xs'>
               {' '}
               Administrateur
@@ -26,7 +35,8 @@ export default function TopBar() {
           <p
             className='text-white text-xs text-shadow-xs
           '>
-            Bienvenue, Logan HERON. Gérez vos logement depuis ce tableau de bord
+            Bienvenue, {adminData?.prenom} {adminData?.nom}. Gérez vos logements
+            depuis ce tableau de bord
           </p>
         </div>
       </div>
