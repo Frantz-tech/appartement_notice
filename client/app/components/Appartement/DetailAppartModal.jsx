@@ -52,6 +52,7 @@ export default function DetailAppartModal({ appart, onClose, onEdit }) {
         </div>
 
         <button
+          type='button'
           onClick={handleClose}
           className=' absolute top-1 right-1 bg-black text-white w-6 h-6 rounded cursor-pointer'>
           &#10006;

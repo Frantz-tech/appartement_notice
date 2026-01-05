@@ -23,7 +23,7 @@ export default function ListAppart() {
 
   const handleEditAppart = appart => {
     setIsModalOpen(true)
-    setSelectedAppart(appart)
+    setSelectedAppart({ ...appart })
     setIsEditMode(true)
   }
 
@@ -35,15 +35,14 @@ export default function ListAppart() {
     setSelectedAppart(details.data[0])
     setIsModalOpen(true)
   }
-
+  const fetchApparts = async () => {
+    const response = await getData(
+      'http://localhost:3001/api/admin/appartement'
+    )
+    setApparts(response.data)
+    // alert('Appartement récupérés avec succès')
+  }
   useEffect(() => {
-    async function fetchApparts() {
-      const response = await getData(
-        'http://localhost:3001/api/admin/appartement'
-      )
-      setApparts(response.data)
-      // alert('Appartement récupérés avec succès')
-    }
     fetchApparts()
   }, [])
 
@@ -90,10 +89,16 @@ export default function ListAppart() {
       {isModalOpen && isEditMode && selectedAppart && (
         <div className='fixed inset-0 flex items-center justify-center bg-black/10 z-50'>
           <FormCreateAppart
+            key={selectedAppart?.APPART_ID}
             mode='edit'
             initialData={selectedAppart}
             appartementId={selectedAppart.APPART_ID}
-            onClose={() => setIsEditMode(false)}
+            onClose={() => {
+              setIsEditMode(false)
+              setSelectedAppart(null)
+              setIsModalOpen(false)
+            }}
+            refreshList={fetchApparts}
           />
         </div>
       )}

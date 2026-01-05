@@ -10,6 +10,20 @@ const createAppartement = async (dataAppart, dataDetailAppart) => {
   return appartement
 }
 
+const updateAppartement = async (insertId, dataAppart, dataDetailAppart) => {
+  const updatedAppartement = await Repository.updateAppartement(
+    insertId,
+    dataAppart,
+    dataDetailAppart
+  )
+  console.log(
+    "Service | => Donnés de l'appartement a modifier : ",
+    updatedAppartement
+  )
+  return updatedAppartement
+}
+
 export const Service = {
-  createAppartement
+  createAppartement,
+  updateAppartement
 }

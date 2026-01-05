@@ -42,6 +42,45 @@ const createAppartement = async (dataAppart, dataDetailAppart) => {
   return [insertId, detailResult.insertId]
 }
 
+const updateAppartement = async (appartId, dataAppart, dataDetailAppart) => {
+  const { nom, adresse, ville, code_postal, type } = dataAppart
+  const {
+    superficie,
+    chambres,
+    sdb,
+    cuisine,
+    meubles,
+    balcon,
+    ascenseur,
+    description
+  } = dataDetailAppart
+
+  // Update appartement
+  await pool.query(
+    'UPDATE APPARTEMENT SET NOM = ?, ADRESSE = ?, VILLE = ?, CODE_POSTAL = ?, TYPE = ? WHERE APPART_ID = ?',
+    [nom, adresse, ville, code_postal, type, appartId]
+  )
+
+  // Update détail
+  await pool.query(
+    'UPDATE DETAIL SET SUPERFICIE = ?, CHAMBRES = ?, SALLE_BAIN = ?, CUISINE = ?, MEUBLES = ?, BALCON = ?, ASCENSEUR = ?, DESCRIPTION = ? WHERE APPART_ID = ?',
+    [
+      superficie,
+      chambres,
+      sdb,
+      cuisine,
+      meubles,
+      balcon,
+      ascenseur,
+      description,
+      appartId
+    ]
+  )
+
+  return appartId
+}
+
 export const Repository = {
-  createAppartement
+  createAppartement,
+  updateAppartement
 }

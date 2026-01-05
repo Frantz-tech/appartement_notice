@@ -8,7 +8,8 @@ export function FormCreateAppart({
   mode = 'create',
   initialData = null,
   appartementId = null,
-  onClose = null
+  onClose = null,
+  refreshList = null
 }) {
   // Animation de l'édit :
 
@@ -65,7 +66,23 @@ export function FormCreateAppart({
     'Villa',
     'Appartement'
   ]
-
+  useEffect(() => {
+    if (initialData) {
+      setNom(initialData.APPART_NAME || '')
+      setAdresse(initialData.ADRESS_APPART || '')
+      setVille(initialData.TOWN || '')
+      setCode_postal(initialData.CP || '')
+      setType(initialData.TYPE || '')
+      setSuperficie(initialData.SUPERFICIE || '')
+      setChambres(initialData.CHAMBRES || '')
+      setSdb(initialData.SALLE_BAIN || '')
+      setCuisine(initialData.CUISINE ?? true)
+      setMeubles(initialData.MEUBLES ?? true)
+      setBalcon(initialData.BALCON ?? false)
+      setAscenseur(initialData.ASCENSEUR ?? false)
+      setDescription(initialData.DESCRIPTION || '')
+    }
+  }, [initialData])
   const resetForm = () => {
     setNom('')
     setAdresse('')
@@ -106,6 +123,10 @@ export function FormCreateAppart({
         body,
         'Appartement modifié avec succès !'
       )
+      refreshList()
+      handleClose && handleClose()
+
+      return
     }
 
     await postData('http://localhost:3001/api/admin/appartement', body)
@@ -130,6 +151,7 @@ export function FormCreateAppart({
           className='flex flex-col gap-4 m-3 justify-center items-center'>
           {onClose && (
             <button
+              type='button'
               onClick={handleClose}
               className='
               absolute
