@@ -22,7 +22,6 @@ const guestLogin = async (req, res) => {
       expiresIn: '3h'
     })
 
-    console.log('guest.id  check value :', guest.GUEST_ID)
     sendSuccessResponse(res, 200, 'Connexion réussie', { user: guest, token })
   } catch (error) {
     console.error('Erreur guestLogin:', error)
@@ -31,7 +30,6 @@ const guestLogin = async (req, res) => {
 }
 
 const createGuestWithReservation = async (req, res, next) => {
-  console.log('BODY RECU:', req.body)
   try {
     const guestData = {
       name: req.body.name,
@@ -39,7 +37,6 @@ const createGuestWithReservation = async (req, res, next) => {
       email: req.body.email,
       number: req.body.number
     }
-    console.log('debug guestData', guestData)
 
     const reservationData = {
       appart_id: req.body.appart_id,
@@ -47,7 +44,6 @@ const createGuestWithReservation = async (req, res, next) => {
       check_out: req.body.checkOut,
       status: req.body.status || 'EN_ATTENTE'
     }
-    console.log('debug reservationData ', reservationData)
 
     await Service.createGuestWithReservation(guestData, reservationData)
 

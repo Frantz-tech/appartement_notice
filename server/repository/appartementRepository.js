@@ -11,8 +11,6 @@ const createAppartement = async (dataAppart, dataDetailAppart) => {
 
   const insertId = result.insertId
 
-  console.log('InsertID de Appartement : ', insertId)
-
   const {
     superficie,
     chambres,

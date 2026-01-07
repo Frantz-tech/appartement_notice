@@ -6,8 +6,6 @@ const getAllGuest = async (req, res, next) => {
   try {
     const guests = await Service.getAllGuest()
 
-    console.log('Liste des guests = ', guests)
-
     sendSuccessResponse(res, 200, 'Guests récupérés avec succès', guests)
   } catch (err) {
     next(err)
@@ -18,7 +16,6 @@ const getGuestById = async (req, res, next) => {
   const guest = req.params.id
   try {
     const guestId = await Service.getGuestById(guest)
-    console.log('Détal du guest : ', guestId)
 
     sendSuccessResponse(
       res,
@@ -47,9 +44,7 @@ const connectGuestWithMail = async (req, res, next) => {
         expiresIn: '3h'
       }
     )
-    console.log('Trouver qqchose', guest.EMAIL)
 
-    console.log('Check de l email du guest = ', { user: guest, token })
     sendSuccessResponse(res, 200, 'Email vérifié avec succès', {
       ...guest,
       token

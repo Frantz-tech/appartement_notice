@@ -8410,3 +8410,7 @@ POST /api/guest/reservation/me - 2026-01-07T12:41:44.141Z
 GET /api/admin/appartement_detail/3 - 2026-01-07T12:42:03.720Z
 GET /api/admin/appartement_detail/4 - 2026-01-07T12:42:07.405Z
 POST /api/guest/reservation/me - 2026-01-07T12:42:12.940Z
+GET /api/admin/appartement - 2026-01-07T12:49:41.534Z
+GET /api/admin/appartement - 2026-01-07T12:49:41.548Z
+GET /api/admin/appartement - 2026-01-07T12:49:49.759Z
+GET /api/admin/appartement - 2026-01-07T12:49:49.770Z

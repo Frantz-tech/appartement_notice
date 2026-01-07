@@ -18,8 +18,6 @@ const createGuestWithReservation = async (guestData, reservationData) => {
 
   const guestId = result.insertId
 
-  console.log('Repository || new Guest info : ', result)
-
   // Insert in reservation table
   const { appart_id, check_in, check_out, status } = reservationData
   const [reservationResult] = await pool.query(

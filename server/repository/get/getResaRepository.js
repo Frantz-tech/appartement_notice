@@ -32,7 +32,6 @@ JOIN APPARTEMENT a ON r.APPART_ID = a.APPART_ID
 WHERE r.GUEST_ID = ?`,
     [id]
   )
-  console.log(' >>> REPOSITORY id = ', id)
 
   return rows
 }

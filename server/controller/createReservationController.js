@@ -4,7 +4,6 @@ import { ServiceResa } from '../services/createReservationService.js'
 const createReservation = async (req, res, next) => {
   try {
     const { guestId, appartId, checkIn, checkOut } = req.body
-    console.log('BODY REÇU =>', req.body)
 
     const reservationId = await ServiceResa.createReservation(guestId, {
       appartId,
@@ -26,10 +25,8 @@ const createReservation = async (req, res, next) => {
 const createResaGuestConnected = async (req, res, next) => {
   try {
     const guestId = req.guest.id
-    console.log('guest id => ', guestId)
 
     const { appartId, checkIn, checkOut } = req.body
-    console.log('Body Recu : =>', req.body)
 
     const newReservation = await ServiceResa.createResaGuestConnected(guestId, {
       appartId,
