@@ -18,9 +18,11 @@ const guestLogin = async (req, res) => {
       return res.status(401).json({ message: 'Mot de passe incorrect ❌' })
     }
 
-    const token = jwt.sign({ id: guest.id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ id: guest.GUEST_ID }, process.env.JWT_SECRET, {
       expiresIn: '3h'
     })
+
+    console.log('guest.id  check value :', guest.GUEST_ID)
     sendSuccessResponse(res, 200, 'Connexion réussie', { user: guest, token })
   } catch (error) {
     console.error('Erreur guestLogin:', error)

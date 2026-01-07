@@ -9,7 +9,7 @@ export default function GuestList() {
 
   const handleClickDetail = async guestId => {
     const detailsReservation = await getData(
-      `http://localhost:3001/api/admin/reservations/${guestId}`
+      `http://localhost:3001/api/guest/reservations/${guestId}`
     )
     setReservationId(detailsReservation.data)
     setIsModalOpen(true)

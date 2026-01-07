@@ -40,9 +40,13 @@ const connectGuestWithMail = async (req, res, next) => {
     }
     const guest = await Service.connectGuestWithMail(email)
 
-    const token = jwt.sign({ id: guest.EMAIL }, process.env.JWT_SECRET, {
-      expiresIn: '3h'
-    })
+    const token = jwt.sign(
+      { id: guest.GUEST_ID, email: guest.EMAIL },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: '3h'
+      }
+    )
     console.log('Trouver qqchose', guest.EMAIL)
 
     console.log('Check de l email du guest = ', { user: guest, token })

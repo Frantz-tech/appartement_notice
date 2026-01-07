@@ -1,11 +1,31 @@
 import { useEffect, useState } from 'react'
+import DetailAppartModalGuest from '../Appartement/DetailAppartModalGuest'
 import { getData } from '../CRUD/GET/GetData'
-import { FormResaAppart } from './FormResaAppart'
+import BookForm from './ReservationForm'
 
 export default function ListAppartGuest() {
   const [apparts, setApparts] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isBookMode, setIsBookMode] = useState(false)
   const [selectedAppart, setSelectedAppart] = useState(null)
+
+  useEffect(() => {
+    if (isModalOpen && (isBookMode || !isBookMode)) {
+      document.body.classList.add('overflow-hidden')
+    } else {
+      document.body.classList.remove('overflow-hidden')
+    }
+
+    return () => {
+      document.body.classList.remove('overflow-hidden')
+    }
+  }, [isModalOpen, isBookMode])
+
+  const bookReservation = appart => {
+    setIsModalOpen(true)
+    setIsBookMode(true)
+    setSelectedAppart(appart)
+  }
 
   const handleClickDetail = async id => {
     const details = await getData(
@@ -16,14 +36,14 @@ export default function ListAppartGuest() {
     setIsModalOpen(true)
   }
 
+  const fetchApparts = async () => {
+    const response = await getData(
+      'http://localhost:3001/api/admin/appartement'
+    )
+    setApparts(response.data)
+    // alert('Appartement récupérés avec succès')
+  }
   useEffect(() => {
-    async function fetchApparts() {
-      const response = await getData(
-        'http://localhost:3001/api/admin/appartement'
-      )
-      setApparts(response.data)
-      // alert('Appartement récupérés avec succès')
-    }
     fetchApparts()
   }, [])
 
@@ -57,10 +77,27 @@ export default function ListAppartGuest() {
           </div>
         ))}
         {isModalOpen && selectedAppart && (
+          <DetailAppartModalGuest
+            appart={selectedAppart}
+            appartementId={selectedAppart.APPART_ID}
+            onClose={() => {
+              setIsModalOpen(false)
+              setIsBookMode(false)
+            }}
+            onBook={bookReservation}
+          />
+        )}
+        {isModalOpen && selectedAppart && isBookMode && (
           <div className='fixed inset-0 flex items-center justify-center bg-black/10 z-50'>
-            <FormResaAppart
+            <BookForm
+              key={selectedAppart?.APPART_ID}
+              mode='book'
               appartementId={selectedAppart.APPART_ID}
-              onClose={() => setIsEditMode(false)}
+              onClose={() => {
+                setIsBookMode(false)
+                setSelectedAppart(null)
+                setIsModalOpen(false)
+              }}
             />
           </div>
         )}

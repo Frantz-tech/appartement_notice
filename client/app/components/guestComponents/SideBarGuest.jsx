@@ -2,16 +2,10 @@ import { useEffect, useState } from 'react'
 import Galerie from '../Galerie'
 import Legal from '../Legal'
 import Rules from '../Rules'
-import ComingSoon from './Coming'
 import ListAppartGuest from './ListAppartGuest'
 import ReservationsByGuestId from './ReservationByGuest'
 
 export const menuGuest = [
-  {
-    label: 'Dashboard',
-    logo: <img src='/monitor.png' alt='logoResume' />,
-    header: 'Dashboard'
-  },
   {
     label: 'Appartements',
     component: <ListAppartGuest />,
@@ -30,12 +24,7 @@ export const menuGuest = [
     logo: <img src='/history1.png' alt='logoResume' />,
     header: 'Historique des réservations'
   },
-  {
-    label: 'A venir',
-    component: <ComingSoon />,
-    logo: <img src='/comingS.png' alt='logoResume' />,
-    header: 'A venir'
-  },
+
   {
     label: 'Galerie ',
     component: <Galerie />,

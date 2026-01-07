@@ -16,7 +16,10 @@ export default function AlreadyGuestLogin({ onLoginSuccess }) {
     if (response.data && response.data.token) {
       localStorage.setItem(
         'guestToken',
-        JSON.stringify({ token: response.data.token, email })
+        JSON.stringify({
+          token: response.data.token,
+          id: response.data.GUEST_ID
+        })
       )
       localStorage.setItem('guestData', JSON.stringify(response.data))
       onLoginSuccess(response.data)

@@ -1,12 +1,14 @@
 export async function postData(
   url = '',
   data = {},
-  successMessage = 'Envoie réussie'
+  successMessage = 'Envoie réussie',
+  extraHeaders = {}
 ) {
   const response = await fetch(url, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      ...extraHeaders
     },
     body: JSON.stringify(data)
   })
@@ -14,8 +16,13 @@ export async function postData(
   console.log('Réponse status :', response.status)
 
   if (!response.ok) {
-    alert(json.errors ? json.errors[0] : json.message || 'Erreur inconnue')
-    throw new Error(json.error || `Erreur serveur : ${response.status}`)
+    const errorMessage = json.errors
+      ? json.errors[0]
+      : json.message ||
+        JSON.stringify(json) ||
+        `Erreur serveur : ${response.status}`
+    alert(errorMessage)
+    return
   }
   alert(successMessage)
   console.log('Réponse JSON', json)

@@ -20,5 +20,6 @@ router.use('/login', getGuestRoutes)
 router.use('/admin', getAllResa)
 router.use('/guest', getAllResa)
 router.use('/admin', createReservation)
+router.use('/guest', createReservation)
 
 export default router

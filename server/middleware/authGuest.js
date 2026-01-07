@@ -17,6 +17,7 @@ export const authGuest = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
     req.guest = decoded // contient id et email
+    console.log('Middleware authGuest - decoded:', decoded)
     next()
   } catch (error) {
     res.status(401).json({ message: 'Token invalide', error })
