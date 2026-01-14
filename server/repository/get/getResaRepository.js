@@ -7,6 +7,7 @@ const getAllResa = async () => {
   g.LASTNAME   AS GUEST_LASTNAME,
   a.APPART_ID,
   a.NOM        AS APPART_NAME,
+  r.RESERVATION_ID,
   r.CHECK_IN,
   r.CHECK_OUT,
   r.STATUS

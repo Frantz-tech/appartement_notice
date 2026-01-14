@@ -6,5 +6,5 @@ export default function formatDate(dateString) {
   const hours = String(date.getHours()).padStart(2, '0') // Heure avec 2 chiffres
   const minutes = String(date.getMinutes()).padStart(2, '0') // Minutes avec 2 chiffres
 
-  return ` Le ${day}/${month}/${year} `
+  return ` ${day}/${month}/${year} `
 }

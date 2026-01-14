@@ -12,12 +12,7 @@ export const menuGuest = [
     logo: <img src='/residential.png' alt='logoResume' />,
     header: 'Liste des appartements'
   },
-  {
-    label: 'Réserver',
-    component: <ReservationsByGuestId />,
-    logo: <img src='/reserved.png' alt='logoResume' />,
-    header: 'Gérer mes Réservations'
-  },
+
   {
     label: 'Historique',
     component: <ReservationsByGuestId />,
