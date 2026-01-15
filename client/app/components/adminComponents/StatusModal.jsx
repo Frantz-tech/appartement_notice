@@ -17,7 +17,7 @@ export default function StatusModal({ reservation, onClose, onSuccess }) {
       'Status modifié avec succès'
     )
     onSuccess()
-    onClose(handleClose)
+    handleClose()
   }
   useEffect(() => {
     document.body.classList.add('overflow-hidden')
