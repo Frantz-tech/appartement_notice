@@ -7,7 +7,7 @@ import getAllResa from './get/getResaRoute.js'
 import getAllRules from './get/getRulesRoute.js'
 import guestRoutes from './guestRoute.js'
 import createReservation from './reservationRoute.js'
-
+import updateResa from './update/updateResaRoute.js'
 const router = Router()
 
 router.use('/admin', adminRoutes)
@@ -21,5 +21,6 @@ router.use('/admin', getAllResa)
 router.use('/guest', getAllResa)
 router.use('/admin', createReservation)
 router.use('/guest', createReservation)
+router.use('/admin', updateResa)
 
 export default router

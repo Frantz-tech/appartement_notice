@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import formatDate from '../../dashboard-admin/GUEST/FormatDate'
 import { getData } from '../CRUD/GET/GetData'
 
@@ -6,6 +6,7 @@ export default function ReservationsByGuestId() {
   // ✅ Récupération de l'email depuis le token
   const tokenData = JSON.parse(localStorage.getItem('guestData'))
   const guestEmail = tokenData?.EMAIL
+  const [reservations, setReservations] = useState([])
 
   useEffect(() => {
     if (!guestEmail) return

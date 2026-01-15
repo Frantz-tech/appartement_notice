@@ -1,18 +1,21 @@
 import { useEffect, useState } from 'react'
 import formatDate from '../../dashboard-admin/GUEST/FormatDate'
 import { getData } from '../CRUD/GET/GetData'
+import StatusModal from './StatusModal'
 
 export default function Reservations() {
-  const [reservations, setReservation] = useState([])
+  const [reservations, setReservations] = useState([])
+  const [selectedResa, setSelectedResa] = useState(null)
+  const [isModalStatusOpen, setIsModalStatusOpen] = useState(false)
 
+  const fetchReservations = async () => {
+    const response = await getData(
+      'http://localhost:3001/api/admin/reservations'
+    )
+    setReservations(response.data)
+    // alert('Guest récupérés avec succès')
+  }
   useEffect(() => {
-    async function fetchReservations() {
-      const response = await getData(
-        'http://localhost:3001/api/admin/reservations'
-      )
-      setReservation(response.data)
-      // alert('Guest récupérés avec succès')
-    }
     fetchReservations()
   }, [])
 
@@ -26,6 +29,12 @@ export default function Reservations() {
             /_/g,
             ' '
           ).toLowerCase()
+          const statusColors = {
+            EN_ATTENTE: 'bg-yellow-500',
+            RESERVE: 'bg-blue-500',
+            PAYE: 'bg-green-500',
+            ANNULE: 'bg-red-500'
+          }
           return (
             <div
               key={reservation.RESERVATION_ID}
@@ -38,11 +47,18 @@ export default function Reservations() {
           p-4'>
               {/* STATUT RIGTH CORNER */}
               <div
-                className='
+                className={`
                 absolute -top-3 right-3 px-3 py-1
                 text-xs font-semibold
                 rounded-full
-              bg-green-500 text-white'>
+             text-white
+              ${statusColors[reservation.STATUS]}
+             `}
+                onClick={e => {
+                  e.stopPropagation()
+                  setSelectedResa(reservation)
+                  setIsModalStatusOpen(true)
+                }}>
                 {statusFormatted}
               </div>
               <div>Nom du client : {reservation.GUEST_NAME} </div>
@@ -53,6 +69,15 @@ export default function Reservations() {
             </div>
           )
         })}
+        {isModalStatusOpen && selectedResa && (
+          <StatusModal
+            reservation={selectedResa}
+            onClose={() => setIsModalStatusOpen(false)}
+            onSuccess={() => {
+              fetchReservations()
+            }}
+          />
+        )}
       </div>
     </div>
   )

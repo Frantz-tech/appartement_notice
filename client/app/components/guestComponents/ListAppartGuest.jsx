@@ -76,6 +76,7 @@ export default function ListAppartGuest() {
             </button>
           </div>
         ))}
+
         {isModalOpen && selectedAppart && (
           <DetailAppartModalGuest
             appart={selectedAppart}
@@ -87,6 +88,9 @@ export default function ListAppartGuest() {
             onBook={bookReservation}
           />
         )}
+
+        {/* Réservation dans le détail */}
+
         {isModalOpen && selectedAppart && isBookMode && (
           <div className='fixed inset-0 flex items-center justify-center bg-black/10 z-50'>
             <BookForm
