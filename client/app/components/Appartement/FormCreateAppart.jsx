@@ -139,7 +139,7 @@ export function FormCreateAppart({
         mode === 'edit' ? 'fixed inset-0 bg-black/50 z-50' : ''
       }`}>
       <div
-        className={`bg-gray-600 rounded flex flex-col  items-center justify-evenly transition-all duration-300 ${
+        className={`bg-[#816C61] rounded flex flex-col  items-center justify-evenly transition-all duration-300 ${
           mode === 'edit'
             ? visible
               ? 'scale-100 opacity-100 px-5 pt-5'
@@ -172,20 +172,32 @@ export function FormCreateAppart({
 
           <div
             className='
-          grid gap-4 md:grid-cols-2 
-          [&_input]:bg-gray-50 
-          [&_input]:border [&_input]:border-gray-300 [&_input]:text-gray-900 
-          [&_input]:text-sm [&_input]:rounded-lg [&_input]:focus:ring-blue-500 
-          [&_input]:focus:border-blue-500 [&_input]:block [&_input]:w-full [&_input]:p-2
-          [&_input]:dark:bg-gray-700 [&_input]:dark:border-gray-600 [&_input]:dark:placeholder-gray-400
-           [&_input]:dark:text-white [&_input]:dark:focus:ring-blue-500 [&_input]:dark:focus:border-blue-500
-          [&_label]:block
-          [&_label]:text-sm
-          [&_label]:pl-3
-          [&_label]:
-          [&_label]:font-medium
-          [&_label]:text-gray-900
-          [&_label]:dark:text-black
+            grid gap-4 md:grid-cols-2 [&_input]:bg-gray-50 
+            [&_input]:border 
+          [&_input]:border-gray-300 
+          [&_input]:text-gray-900 
+            [&_input]:text-sm [&_input]:rounded-lg 
+            [&_input]:block 
+            [&_input]:w-full 
+            [&_input]:p-2
+          [&_input]:dark:bg-[#E7DFC6] 
+          [&_input]:dark:placeholder-gray-600
+          [&_input]:dark:text-gray-900 
+          [&_textaera]:dark:bg-[#E7DFC6]
+          [&_select]:dark:bg-[#E7DFC6]
+          [&_select]:bg-gray-50 
+            [&_select]:border 
+            [&_select]:border-gray-300 
+            [&_select]:text-gray-900 
+            [&_select]:text-sm 
+            [&_select]:rounded-lg 
+            [&_select]:block 
+            [&_select]:w-full 
+            [&_select]:p-2
+          [&_select]:dark:border-gray-600 
+          [&_select]:dark:placeholder-gray-400 
+          [&_select]:dark:text-gray-600
+            [&_input[type=checkbox]:cursor-pointer]
           '>
             <div>
               {/* <label htmlFor='nom'>Nom</label> */}
@@ -236,7 +248,7 @@ export function FormCreateAppart({
               <select
                 value={type}
                 onChange={e => setType(e.target.value)}
-                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
+                className=''>
                 {types.map(t => (
                   <option key={t} value={t}>
                     {t}
@@ -316,8 +328,9 @@ export function FormCreateAppart({
             <div className='md:col-span-2'>
               {/* <label htmlFor='description'>Description</label> */}
               <textarea
-                className='w-full border border-gray-300 text-gray-900 
-          text-sm rounded-lg p-2 block bg-gray-700 dark:text-white dark:placeholder-gray-400 '
+                className='
+                w-full text-gray-900 text-sm rounded-lg p-2 max-h-[150px]
+              bg-[#E7DFC6] dark:text-gray-900 dark:placeholder-gray-600'
                 type='text'
                 rows='5'
                 id='description'
@@ -329,7 +342,11 @@ export function FormCreateAppart({
           </div>
           <button
             type='submit'
-            className='text-white cursor-pointer bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-3xl text-sm w-full sm:w-auto px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
+            className='
+          text-white cursor-pointer font-medium rounded-3xl text-sm w-full sm:w-auto px-5 py-1.5 text-center 
+            focus:ring-4 focus:outline-none  
+          bg-[#2274A5] hover:bg-[#1A84C2] focus:ring-[#1A84C2] 
+          dark:bg-[#2274A5] dark:hover:bg-[##1A84C2] dark:focus:ring-[#1A84C2]'>
             {mode === 'edit' ? 'Modifier' : 'Créer'}
           </button>
         </form>
