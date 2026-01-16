@@ -96,7 +96,7 @@ export default function Reservations() {
         </div>
       ) : (
         <div>
-          <h2>Mode Table / Calendrier</h2>
+          <h1 className='text-black font-bold text-4xl'>Mode Calendrier</h1>
           {/* Ici tu pourrais mettre ton tableau ou calendrier */}
         </div>
       )}

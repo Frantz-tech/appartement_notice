@@ -24,7 +24,7 @@ export default function AdminLogin({ onLoginSuccess }) {
       )
       localStorage.setItem('adminData', JSON.stringify(response.data.user))
       onLoginSuccess(response.data.user)
-      console.log('Token stocké : ', response.data.user)
+      // console.log('Token stocké : ', response.data.user)
     } else {
       setError('Email ou mdp incorrect')
     }
