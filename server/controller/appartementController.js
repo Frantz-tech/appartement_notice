@@ -1,7 +1,10 @@
 import { sendSuccessResponse } from '../helper/responseHelper.js'
 import { Service } from '../services/appartementService.js'
+import { PicService } from '../services/picturesService.js'
 
 const createAppartement = async (req, res, next) => {
+  console.log('BODY:', req.body)
+  console.log('FILES:', req.files)
   const dataAppart = {
     nom: req.body.nom,
     adresse: req.body.adresse,
@@ -14,10 +17,10 @@ const createAppartement = async (req, res, next) => {
     superficie: req.body.superficie,
     chambres: req.body.chambres,
     sdb: req.body.sdb,
-    cuisine: req.body.cuisine,
-    meubles: req.body.meubles,
-    balcon: req.body.balcon,
-    ascenseur: req.body.ascenseur,
+    cuisine: req.body.cuisine === 'true' ? 1 : 0,
+    meubles: req.body.meubles === 'true' ? 1 : 0,
+    balcon: req.body.balcon === 'true' ? 1 : 0,
+    ascenseur: req.body.ascenseur === 'true' ? 1 : 0,
     description: req.body.description
   }
 
@@ -26,10 +29,15 @@ const createAppartement = async (req, res, next) => {
       dataAppart,
       dataDetailAppart
     )
-    // Mettre a la place send succes response
-    res
-      .status(201)
-      .json({ message: 'Appartement créé', ids: [appartId, detailId] })
+    if (req.files && req.files.length > 0) {
+      const urls = req.files.map(file => `/uploads/${file.filename}`)
+      await PicService.createPictures(detailId, urls)
+    }
+
+    sendSuccessResponse(res, 201, 'Appartement créer avec succès', [
+      appartId,
+      detailId
+    ])
   } catch (err) {
     next(err)
   }

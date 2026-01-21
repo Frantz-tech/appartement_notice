@@ -1,17 +1,17 @@
 export async function postData(
   url = '',
-  data = {},
-  successMessage = 'Envoie réussie',
+  formData,
+  successMessage = 'Envoi réussi',
   extraHeaders = {}
 ) {
   const response = await fetch(url, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
-      ...extraHeaders
+      ...extraHeaders // ⚠️ Ne PAS mettre Content-Type
     },
-    body: JSON.stringify(data)
+    body: formData
   })
+
   const json = await response.json()
   console.log('Réponse status :', response.status)
 
@@ -24,6 +24,7 @@ export async function postData(
     alert(errorMessage)
     return
   }
+
   alert(successMessage)
   console.log('Réponse JSON', json)
   return json

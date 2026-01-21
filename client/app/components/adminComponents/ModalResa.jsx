@@ -66,7 +66,7 @@ export default function DetailReservationModal({ reservation, onClose }) {
                 return (
                   <div
                     key={resa.RESERVATION_ID}
-                    className='w-full flex shrink-0 px-6'>
+                    className='w-full flex justify-center shrink-0 px-6'>
                     <div className='border rounded-md p-4'>
                       <h2 className='font-bold mb-2'>{resa.RESERVATION_ID}</h2>
                       <p>Nom : {resa.LASTNAME}</p>

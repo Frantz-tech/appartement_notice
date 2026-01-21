@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { getData } from '../CRUD/GET/GetData'
 import DetailAppartModal from './DetailAppartModal'
 import { FormCreateAppart } from './FormCreateAppart'
+import GaleryAppart from './GaleryAppart'
 
 export default function ListAppart() {
   const [apparts, setApparts] = useState([])
@@ -46,6 +47,11 @@ export default function ListAppart() {
     fetchApparts()
   }, [])
 
+  const handleClickAppartPics = appart => {
+    setSelectedAppart({ ...appart })
+    console.log('Click sur l appart', appart)
+  }
+
   return (
     <div className='p-4 mx-auto flex flex-col  items-center h-full overflow-auto '>
       <div className='grid grid-cols-2  sm:grid-cols-3 md:grid-cols-4 gap-4'>
@@ -60,7 +66,12 @@ export default function ListAppart() {
           hover:-translate-y-0.5 
           p-4
           '>
-            <img src='/appartement.png' alt='' />
+            <img
+              src='/appartement.png'
+              alt=''
+              className='clickPic'
+              onClick={() => handleClickAppartPics(appart)}
+            />
             {/* infos  */}
             <div className='text-blue-400'>{appart.NOM}</div>
             <div className='text-blue-300'>{appart.VILLE}</div>
@@ -86,6 +97,7 @@ export default function ListAppart() {
           />
         )}
       </div>
+
       {isModalOpen && isEditMode && selectedAppart && (
         <div className='fixed inset-0 flex items-center justify-center bg-black/10 z-50'>
           <FormCreateAppart
@@ -101,6 +113,14 @@ export default function ListAppart() {
             refreshList={fetchApparts}
           />
         </div>
+      )}
+      {selectedAppart && (
+        <GaleryAppart
+          pictures={selectedAppart.PICTURES}
+          onClose={() => {
+            setSelectedAppart(null)
+          }}
+        />
       )}
     </div>
   )

@@ -38,7 +38,7 @@ export function FormCreateAppart({
       onClose && onClose()
     }
   }
-
+  const [pictures, setPictures] = useState([])
   const [nom, setNom] = useState(initialData?.APPART_NAME || '')
   const [adresse, setAdresse] = useState(initialData?.ADRESS_APPART || '')
   const [ville, setVille] = useState(initialData?.TOWN || '')
@@ -81,6 +81,7 @@ export function FormCreateAppart({
       setBalcon(initialData.BALCON ?? false)
       setAscenseur(initialData.ASCENSEUR ?? false)
       setDescription(initialData.DESCRIPTION || '')
+      setPictures(initialData.URL || [])
     }
   }, [initialData])
   const resetForm = () => {
@@ -97,6 +98,7 @@ export function FormCreateAppart({
     setBalcon(false)
     setAscenseur(false)
     setDescription('')
+    setPictures([])
   }
 
   const body = {
@@ -129,7 +131,17 @@ export function FormCreateAppart({
       return
     }
 
-    await postData('http://localhost:3001/api/admin/appartement', body)
+    const formData = new FormData()
+
+    Object.entries(body).forEach(([key, value]) => {
+      formData.append(key, value)
+    })
+
+    pictures.forEach(file => {
+      formData.append('pictures', file)
+    })
+    console.log([...formData.entries()])
+    await postData('http://localhost:3001/api/admin/appartement', formData)
     resetForm()
   }
 
@@ -204,6 +216,7 @@ export function FormCreateAppart({
               <input
                 type='text'
                 id='nom'
+                name='nom'
                 value={nom}
                 onChange={e => setNom(e.target.value)}
                 placeholder='Nom'
@@ -215,6 +228,7 @@ export function FormCreateAppart({
               <input
                 type='text'
                 id='adresse'
+                name='adresse'
                 value={adresse}
                 onChange={e => setAdresse(e.target.value)}
                 placeholder='Adresse'
@@ -226,6 +240,7 @@ export function FormCreateAppart({
               <input
                 type='text'
                 id='ville'
+                name='ville'
                 value={ville}
                 onChange={e => setVille(e.target.value)}
                 placeholder='Ville'
@@ -237,6 +252,7 @@ export function FormCreateAppart({
               <input
                 type='text'
                 id='code_postal'
+                name='code_postal'
                 value={code_postal}
                 onChange={e => setCode_postal(e.target.value)}
                 placeholder='Code Postal'
@@ -246,6 +262,7 @@ export function FormCreateAppart({
             <div>
               {/* <label htmlFor='type'>Type</label> */}
               <select
+                name='type'
                 value={type}
                 onChange={e => setType(e.target.value)}
                 className=''>
@@ -261,6 +278,7 @@ export function FormCreateAppart({
               <input
                 type='number'
                 id='superficie'
+                name='superficie'
                 value={superficie}
                 onChange={e => setSuperficie(e.target.value)}
                 placeholder='Superficie ( m2 )'
@@ -272,6 +290,7 @@ export function FormCreateAppart({
               <input
                 type='number'
                 id='chambres'
+                name='chambres'
                 value={chambres}
                 onChange={e => setChambres(e.target.value)}
                 placeholder='Chambres'
@@ -283,6 +302,7 @@ export function FormCreateAppart({
               <input
                 type='number'
                 id='sdb'
+                name='sdb'
                 value={sdb}
                 onChange={e => setSdb(e.target.value)}
                 placeholder='Salle de bain'
@@ -294,6 +314,7 @@ export function FormCreateAppart({
               <input
                 type='checkbox'
                 id='cuisine'
+                name='cuisine'
                 checked={cuisine}
                 onChange={e => setCuisine(e.target.checked)}
               />
@@ -303,6 +324,7 @@ export function FormCreateAppart({
               <input
                 type='checkbox'
                 id='meubles'
+                name='meubles'
                 checked={meubles}
                 onChange={e => setMeubles(e.target.checked)}
               />
@@ -312,6 +334,7 @@ export function FormCreateAppart({
               <input
                 type='checkbox'
                 id='balcon'
+                name='balcon'
                 checked={balcon}
                 onChange={e => setBalcon(e.target.checked)}
               />
@@ -321,6 +344,7 @@ export function FormCreateAppart({
               <input
                 type='checkbox'
                 id='ascenseur'
+                name='ascenseur'
                 checked={ascenseur}
                 onChange={e => setAscenseur(e.target.checked)}
               />
@@ -332,11 +356,22 @@ export function FormCreateAppart({
                 w-full text-gray-900 text-sm rounded-lg p-2 max-h-[150px]
               bg-[#E7DFC6] dark:text-gray-900 dark:placeholder-gray-600'
                 type='text'
+                name='description'
                 rows='5'
                 id='description'
                 value={description}
                 onChange={e => setDescription(e.target.value)}
                 placeholder='Description'
+              />
+            </div>
+            <div className='md:col-span-2'>
+              <input
+                onChange={e => setPictures([...e.target.files])}
+                type='file'
+                name='pictures'
+                id='pics'
+                accept='image/*, .pdf'
+                multiple
               />
             </div>
           </div>
