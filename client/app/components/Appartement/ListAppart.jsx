@@ -7,6 +7,7 @@ import GaleryAppart from './GaleryAppart'
 export default function ListAppart() {
   const [apparts, setApparts] = useState([])
   const [selectedAppart, setSelectedAppart] = useState(null)
+  const [selectedAppartPicture, setSelectedAppartPicture] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isEditMode, setIsEditMode] = useState(false)
 
@@ -48,7 +49,7 @@ export default function ListAppart() {
   }, [])
 
   const handleClickAppartPics = appart => {
-    setSelectedAppart({ ...appart })
+    setSelectedAppartPicture({ ...appart })
     console.log('Click sur l appart', appart)
   }
 
@@ -114,11 +115,11 @@ export default function ListAppart() {
           />
         </div>
       )}
-      {selectedAppart && (
+      {selectedAppartPicture && (
         <GaleryAppart
-          pictures={selectedAppart.PICTURES}
+          detail_id={selectedAppartPicture.APPART_ID}
           onClose={() => {
-            setSelectedAppart(null)
+            setSelectedAppartPicture(null)
           }}
         />
       )}

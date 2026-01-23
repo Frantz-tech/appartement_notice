@@ -6,6 +6,7 @@ import getGuestRoutes from './get/getGuestRoute.js'
 import getAllResa from './get/getResaRoute.js'
 import getAllRules from './get/getRulesRoute.js'
 import guestRoutes from './guestRoute.js'
+import getPictures from './picturesRoute.js'
 import createReservation from './reservationRoute.js'
 import updateResa from './update/updateResaRoute.js'
 const router = Router()
@@ -22,5 +23,6 @@ router.use('/guest', getAllResa)
 router.use('/admin', createReservation)
 router.use('/guest', createReservation)
 router.use('/admin', updateResa)
+router.use('/admin', getPictures)
 
 export default router

@@ -8,7 +8,15 @@ const createPictures = async (detail_id, urls) => {
   )
   return pictures
 }
+const getPictures = async detail_id => {
+  const [rows] = await pool.query(
+    `SELECT * FROM DETAIL_PICTURES WHERE DETAIL_ID = ?`,
+    [detail_id]
+  )
+  return rows
+}
 
 export const PicRepository = {
-  createPictures
+  createPictures,
+  getPictures
 }

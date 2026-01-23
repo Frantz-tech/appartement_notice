@@ -35,7 +35,7 @@ pool.getConnection((err, connection) => {
 
 app.use((req, res, next) => {
   const log = `${req.method} ${req.url} - ${new Date().toISOString()}\n`
-
+  app.use('/uploads', e.static(path.join(__dirname, 'public/uploads')))
   // Write logs into access.log
   fs.appendFile(path.join(__dirname, 'access.log'), log, err => {
     if (err) {
