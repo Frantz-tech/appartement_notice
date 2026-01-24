@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import GuestList from '../../dashboard-admin/GUEST/GuestList'
 import { FormCreateAppart } from '../Appartement/FormCreateAppart'
 import ListAppart from '../Appartement/ListAppart'
-import Galerie from '../Galerie'
 import Legal from '../Legal'
 import Rules from '../Rules'
 import ComingSoon from './Coming'
@@ -45,13 +44,6 @@ export const menu = [
     logo: <img src='/comingS.png' alt='logoResume' />,
     header: 'A venir'
   },
-  {
-    label: 'Galerie ',
-    component: <Galerie />,
-    logo: <img src='/galery.png' alt='logoResume' />,
-    header: 'Galerie photo'
-  },
-
   {
     label: 'Règlement ',
     component: <Rules />,

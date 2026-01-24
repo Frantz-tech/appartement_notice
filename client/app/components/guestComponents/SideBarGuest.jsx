@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import Galerie from '../Galerie'
 import Legal from '../Legal'
 import Rules from '../Rules'
 import ListAppartGuest from './ListAppartGuest'
@@ -19,14 +18,6 @@ export const menuGuest = [
     logo: <img src='/history1.png' alt='logoResume' />,
     header: 'Historique des réservations'
   },
-
-  {
-    label: 'Galerie ',
-    component: <Galerie />,
-    logo: <img src='/galery.png' alt='logoResume' />,
-    header: 'Galerie photo'
-  },
-
   {
     label: 'Règlement ',
     component: <Rules />,
