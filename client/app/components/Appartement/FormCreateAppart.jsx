@@ -368,6 +368,7 @@ export function FormCreateAppart({
               <input
                 onChange={e => setPictures([...e.target.files])}
                 type='file'
+                // check pictures
                 name='pictures'
                 id='pics'
                 accept='image/*, .pdf'
