@@ -46,15 +46,15 @@ export default function BookForm({
   }
 
   const guestToken = localStorage.getItem('guestToken')
-  if (!guestToken) {
-    alert('Vous devez être connecté pour réserver !')
-  }
-  const tokenObj = JSON.parse(guestToken)
-  const token = tokenObj.token
 
   const handleSubmit = async e => {
     e.preventDefault()
-
+    if (!guestToken) {
+      alert('Vous devez être connecté pour réserver !')
+    }
+    const tokenObj = JSON.parse(guestToken)
+    const token = tokenObj.token
+    console.log('TOKEN LORS DU SUBMIT :  ', token)
     console.log('Info client :', formData)
 
     // Appel API ici apres

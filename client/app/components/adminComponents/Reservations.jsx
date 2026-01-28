@@ -26,7 +26,7 @@ export default function Reservations() {
         onClick={() => setViewMode(viewMode === 'List' ? 'Month' : 'List')}
         className='relative mb-10 bg-gray-600 w-40 h-8 rounded-full cursor-pointer flex items-center'>
         <div
-          className={`absolute w-1/2 h-8 bg-gray-400 border-2 border-white
+          className={`absolute w-1/2 h-8 bg-gray-400 
             rounded-full transform transition-transform duration-700 ${
               viewMode === 'Month' ? 'translate-x-full' : ''
             } `}></div>

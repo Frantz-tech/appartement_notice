@@ -65,7 +65,7 @@ export default function GaleryAppart({ detail_id, onClose }) {
             <div className='picsClass px-5'>
               <img
                 src={`http://localhost:3001${pics[index].URL}`}
-                className='eachPic rounded-sm  w-[800px] h-[450px] object-cover '
+                className='eachPic w-[800px] h-[450px] object-contain '
               />
               <button
                 onClick={previousImg}
@@ -85,7 +85,7 @@ export default function GaleryAppart({ detail_id, onClose }) {
         </div>
         <button
           onClick={handleClose}
-          className={`absolute top-0 right-0 bg-black text-white w-6 h-6 rounded cursor-pointer ${visible ? 'opacity-100' : 'opacity-0'}`}>
+          className={`absolute top-0 right-0 text-white w-6 h-6 rounded cursor-pointer ${visible ? 'opacity-100' : 'opacity-0'}`}>
           &#10006;
         </button>
       </div>

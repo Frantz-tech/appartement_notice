@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { patchData } from '../CRUD/PATCH/PatchData'
-import { postData } from '../CRUD/POST/PostData'
+import { postDataFiles } from '../CRUD/POST/PostData'
 
 export function FormCreateAppart({
   mode = 'create',
@@ -141,7 +141,7 @@ export function FormCreateAppart({
       formData.append('pictures', file)
     })
     console.log([...formData.entries()])
-    await postData('http://localhost:3001/api/admin/appartement', formData)
+    await postDataFiles('http://localhost:3001/api/admin/appartement', formData)
     resetForm()
   }
 

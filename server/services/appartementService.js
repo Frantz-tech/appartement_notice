@@ -5,7 +5,8 @@ const createAppartement = async (dataAppart, dataDetailAppart) => {
     dataAppart,
     dataDetailAppart
   )
-  console.log("Service | => Données de l'appartement", appartement)
+  console.log("Service | => Données de l'appartement", dataAppart)
+  console.log("Service | => Données détail de l'appartement", dataDetailAppart)
   // const errors = []
   return appartement
 }
